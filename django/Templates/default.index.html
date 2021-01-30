@@ -1,0 +1,131 @@
+{% extends 'Layout/layout.default.html' %} {% block style %}
+<style>
+  section {
+    border-bottom: 1px solid #ccc;
+    margin-top: 1em;
+  }
+  section .col-md-3 {
+    border-left: 1px solid #ccc;
+  }
+  section .col-md-3:first-child {
+    border: none;
+  }
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+{% endblock %} 
+
+
+{% block content %}
+<div ng-controller="taskMonitorCtrl" class="container">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Task Monitor</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">รายการ Task</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button ng-click="funcBtnAddTask()" type="button" class="btn btn-info btn-lg" >Add Task</button>
+  </div>
+<hr>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th>TaskId</th>
+                  <th>Task Name</th>
+                  <th>PID</th>
+                  <th>create_by</th>
+                  <th>create_time</th>
+                  <th>start_time</th>
+                  <th>end_time</th>
+                  <th>guid</th>
+                  <th>args</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="i in task_list">
+                  <td>{$ i.id $}</td>
+                  <td>{$ i.task_name $}</td>
+                
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+</div>
+{% endblock %} 
+
+{% block script %}
+<script>
+  app.controller("taskMonitorCtrl", function ($scope, $window) {
+
+    $scope.url_api_show_all_task = "api/task1/show_all";
+    $scope.task_list = []
+   
+
+    $scope.init = function () {
+      $scope.func_show_all_task();
+    };
+    $scope.func_show_all_task = function () {
+      $.ajax({
+        type: "POST",
+        url: "./api/show",
+        data: (data = {}),
+        success: function (res) {
+          console.log(res)
+            $scope.$apply(function() {
+              $scope.task_list = res;
+            }); 
+        },
+        error: function (jqXHR) {
+          Swal.fire({
+            icon: "error",
+            title: jqXHR.status + ' ' + jqXHR.statusText  ,
+            text: jqXHR.responseText,
+          });
+        },
+      });
+    };
+
+    
+   
+
+    $scope.init();
+  });
+</script>
+{% endblock %}

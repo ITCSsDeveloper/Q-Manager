@@ -1,0 +1,74 @@
+{% extends 'Layout/layout.default.html' %} 
+{% block style %}
+{% endblock %} 
+
+{% block content %}
+
+
+<div ng-controller="createTaskCtrl"  class="container" style="margin-top: 50px;">
+  <h3>New Task</h3>
+  <hr>
+
+  <form class="form-horizontal" action="/action_page.php">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="task_name">Task Name :</label>
+      <div class="col-sm-10">
+        <input ng-model="task_name" type="text" class="form-control" id="task_name" name="task_name" placeholder="Enter Task Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="task_command">Command :</label>
+      <div class="col-sm-10">
+        <input ng-model="task_command" type="text" class="form-control" id="task_command" placeholder="Enter Command">
+      </div>
+    </div>
+   
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button ng-click="funcBtnBack()" type="button" class="btn btn-default">Back</button>
+        <button ng-click="funcCreateTask()" type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+{% endblock %} 
+
+{% block script %}
+
+<script>
+  app.controller("createTaskCtrl", function ($scope, $window) { 
+    $scope.url_post_create = '';
+    $scope.task_name = '';
+    $scope.task_command = '';
+
+    $scope.funcCreateTask = function() {
+
+      var _data = {
+        'task_name' : $scope.task_name,
+        'task_command' : $scope.task_command
+      }
+      console.log(_data)
+      $.ajax({
+        type: "POST",
+        url: "api/create",
+        data: _data,
+        success: function (res) {
+          console.log("function ress ", res);
+        },
+        error: function (jqXHR, exception) {
+          Swal.fire({
+            icon: "error",
+            title: jqXHR.status + ' ' + jqXHR.statusText  ,
+            text: jqXHR.responseText,
+          });
+        }
+      });
+    }
+    $scope.funcBtnBack = function(){
+      $window.location.href = '/';
+    }
+  });
+</script>
+
+{% endblock %} 

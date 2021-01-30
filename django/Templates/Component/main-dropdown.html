@@ -1,0 +1,36 @@
+   <div ng-controller="dropdownMenuCtrl" class="container text-center"  style="background-color: #ed008c; ">
+            <div ng-repeat="(index,menu) in menuList" id="menu_{$ index $}"  class="dropdown">
+                <button class="dropbtn">
+                    <a style="color: #FFFFFF;" href="{$ menu.url $}" >{$ menu.title $}</a>
+                </button>
+                <div class="dropdown-content" >
+                    <a  ng-repeat="submenu in menu.subsection" 
+                        href="{$ submenu.url $}" 
+                        style="display:flex !important; min-width: max-content;">
+                        {$ submenu.title $}
+                    </a>
+                </div>
+            </div>
+        </div>
+  <script>
+    app.controller('dropdownMenuCtrl', function($scope, $window) {
+        $scope.menuList = [];
+        $scope.init = function() {
+            $scope.funcGetMenuList();
+        }
+        $scope.funcGetMenuList = function(){
+            $.ajax({
+                type: "GET",
+                url: "../api/menu/",
+                success: function (res) {
+                    $scope.menuList = res.data;
+                    $scope.$apply();
+                },
+                error: function (err) {
+                    console.log("Err", err);
+                },
+            });
+        }
+        $scope.init();
+    });
+</script>
