@@ -29,7 +29,7 @@ cursor = connection.cursor(cursor_factory = RealDictCursor)
 
 # Start API
 def api_show_all_task(request):
-    sql = "SELECT * FROM q_manager.task_table"
+    sql = "SELECT * FROM q_manager.task_table ORDER BY id"
     cursor.execute(sql)
     result = json.dumps(cursor.fetchall(), default=json_util.default)
     return HttpResponse(status=200, content=result, content_type="application/json" )
@@ -38,7 +38,8 @@ def api_show_all_task(request):
 def api_create_task(request):
     if request.method == 'POST':
         task_name = request.POST['task_name']
-        task_command = request.POST['task_command']
+        file_name = request.POST['file_name']
+        task_args = request.POST['task_args']
        
         # Check Task Duplicate
         sql = F"SELECT * FROM task_table T WHERE T.Task_name = '{task_name}' LIMIT 1"
@@ -51,17 +52,16 @@ def api_create_task(request):
         pid = ''
         guid = str(uuid.uuid4().hex)
         status = "PENDING"
-        create_by = "SYSTEM"
-        create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-        start_time =datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-        end_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-        command = task_command
+        # create_by = "SYSTEM"
+        # create_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        # start_time =datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        # end_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
         
         # Insert new Task
         sql = """INSERT INTO q_manager.task_table( \
-	            task_name, pid, status, create_by, create_time, start_time, end_time, guid, command) \
-	            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"""
-        record_to_insert = (task_name, pid,status, create_by, create_time, start_time, end_time, guid, command)
+	            task_name, pid, status, guid, file_name, args) \
+	            VALUES (%s, %s, %s, %s, %s, %s);"""
+        record_to_insert = (task_name, pid, status, guid, file_name, task_args)
         cursor.execute(sql, record_to_insert)
         
         return HttpResponse(status=200, content=F"Create Task Complete : {guid}")
@@ -102,29 +102,13 @@ def api_start(request):
 
         # Validate Task Can Run ?
         row = results[0]
-        if row.status == 'PENDING' :
-            # SET UP Args
-            args = F"-guid={guid}"
-            custom1 = ''  # custom args ใช้ในบางกรณนีที่ ต้องการส่ง parameter เข้าไปใน task 
-            custom2 = ''
-            custom3 = ''
-
-            if custom1 != '' : args += F' -custom1={custom1}'
-            if custom2 != '' : args += F' -custom2={custom2}'
-            if custom3 != '' : args += F' -custom3={custom3}'
-
-            #TODO แก้ให้ระบบรองรับ dir file + ใส่ filename
-            # RUN TASK.py
-            try:
-                po = subprocess.Popen(F'python3 {DIR_TASK}/task1.py {args}',shell=True)
-                time.sleep(3)
-                return HttpResponse(status=200, content= F"Task Runing ....")
-            except:
-                return HttpResponse(status=500, content=F"Error : "+ sys.exc_info()[0])
+        if row['status'] == 'PENDING' :
+            comm = F"python3 {DIR_TASK}/{row['file_name']} {row['args']}"
+            comm = comm.replace("{DIR_TASK}", DIR_TASK)
+            po = subprocess.Popen(comm, shell=True)
+            return HttpResponse(status=200)
         else :
             return HttpResponse(status=403, content=F"Task {guid} Not Ready for Run")
-    else :
-        return HttpResponse(status=405, content="Method not allow")
 
 def api_monitor(request):
     #TODO Get Last Status + Get Last Log

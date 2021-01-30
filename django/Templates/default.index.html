@@ -47,28 +47,26 @@
       </div>
     </div>
   </div>
-  <div>
-    <button ng-click="funcBtnAddTask()" type="button" class="btn btn-info btn-lg" >Add Task</button>
+  
+  <div class="row">
+    <div class="col-12">
+      <button ng-click="func_goto_create()" type="button" class="btn btn-info btn-sm float-right" >Add Task</button>
+    </div>
   </div>
-<hr>
 
   <section class="content">
     <div class="container-fluid">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <table style="width: 100%">
+            <table style="width: 100%" class="table table-hover"> 
               <thead>
                 <tr>
-                  <th>TaskId</th>
-                  <th>Task Name</th>
-                  <th>PID</th>
-                  <th>create_by</th>
-                  <th>create_time</th>
-                  <th>start_time</th>
-                  <th>end_time</th>
-                  <th>guid</th>
-                  <th>args</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>File</th>
+                  <th>Args</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -76,7 +74,15 @@
                 <tr ng-repeat="i in task_list">
                   <td>{$ i.id $}</td>
                   <td>{$ i.task_name $}</td>
-                
+                  <td>{$ i.file_name $}</td>
+                  <td>{$ i.args $}</td>
+                  <td>{$ i.status $}</td>
+                  <td>
+                    <button ng-click="func_start_task(i.guid)">START</button>
+                    <button ng-click="func_stop_task(i.guid)">STOP</button>
+                    <button ng-click="func_log_task(i.guid)">LOG</button>
+                    <button ng-click="func_edit_task(i.guid)">EDIT</button>
+                  </td>
                 </tr>
               </tbody>
               <tfoot></tfoot>
@@ -93,37 +99,75 @@
 {% block script %}
 <script>
   app.controller("taskMonitorCtrl", function ($scope, $window) {
-
     $scope.url_api_show_all_task = "api/task1/show_all";
     $scope.task_list = []
    
-
     $scope.init = function () {
       $scope.func_show_all_task();
+
+      // TODO : Make it better
+      {% comment %} setInterval(function(){
+        $scope.func_show_all_task();
+       }, 5000); {% endcomment %}
     };
+    $scope.func_goto_create= function() {
+       $window.location.href = '/create';
+    }
     $scope.func_show_all_task = function () {
       $.ajax({
         type: "POST",
         url: "./api/show",
-        data: (data = {}),
         success: function (res) {
-          console.log(res)
-            $scope.$apply(function() {
-              $scope.task_list = res;
-            }); 
+          $scope.$apply(function() {
+            $scope.task_list = res;
+          }); 
         },
         error: function (jqXHR) {
-          Swal.fire({
+          /* Swal.fire({
             icon: "error",
             title: jqXHR.status + ' ' + jqXHR.statusText  ,
             text: jqXHR.responseText,
-          });
+          }); */
         },
       });
     };
 
-    
-   
+    $scope.func_start_task = function(guid) {
+      var _data = {
+        'guid' : guid,
+      }
+      $.ajax({
+          type: "POST",
+          url: "./api/start",
+          data: _data,
+          success: function (res) {
+              console.log(res)
+          },
+          error: function (jqXHR) {
+            Swal.fire({
+              icon: "error",
+              title: jqXHR.status + ' ' + jqXHR.statusText  ,
+              text: jqXHR.responseText,
+            });
+          },
+        });
+    }
+    $scope.func_stop_task = function(guid) {
+      console.log(guid)
+
+      //api/stop
+    }
+    $scope.func_log_task = function(guid) {
+      console.log(guid)
+
+      //api/log
+    }
+    $scope.func_edit_task = function(guid) {
+      console.log(guid)
+      //redirect to edit
+    }
+
+
 
     $scope.init();
   });
