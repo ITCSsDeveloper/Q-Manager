@@ -69,14 +69,24 @@ class MyHelper:
             pass
         pass
 
-    def api_update_status(self):
+    def api_update_status(self, status):
+        try :
+            url = F"{self.__api_url}/api/helper/update_status"
+            payload={   
+                'guid': self.__guid,
+                'status': status
+            }
+            requests.request("POST", url, headers={}, data=payload, files=[])
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+            pass
         pass
-    
+
 #END OF HELPER CLASS
 
 class ImportToMongo :
-    __guid = None
-    __pid = None
+    __guid = ""
+    __pid = ""
     __myclient = None
     __mydb = None
     __mycol = None
@@ -95,21 +105,35 @@ class ImportToMongo :
     # __api_helpter = None
     __task_info = None
 
+    #TODO Move Constatn to New Class
+    PENDING = 'PENDING'     #เพิ่งสร้าง
+    RUNNING = 'RUNNING'     #กำลังทำงาน
+    FINISH ='FINISH'        #ทำงานเสร็จสิ้น
+    TERMINATE = 'TERMINATE' #ถูกสั่งให้หยุด
+    ERROR  ='ERROR'         #เกิด Error
+
     
     def log(self, message):
         logging.info(message)
-        self.__api_helpter.api_log_insert(guid= self.__guid, pid= self.__pid, message=message)
+        self.__api_helpter.api_log_insert(message=message)
+        pass
+    
+    #TODO ทำให้เป็นตัวแปร constant
+    def change_status(self, stauts):
+        self.log(F'Change Status To -> {stauts}')
+        self.__api_helpter.api_update_status(status=stauts)
         pass
 
     def __init__(self):
         # Get args
         self.get_args()
 
-        # Init MyHelper สำหรับ Insert Logs
-        self.__api_helpter = MyHelper()
-
         # Set PID
         self.__pid = os.getpid()
+
+         # Init MyHelper สำหรับ Insert Logs
+        self.__api_helpter = MyHelper(self.__guid, self.__pid)
+        self.change_status(self.RUNNING)
         self.log(F'PID = {self.__pid}')
         
         # Check args
@@ -130,7 +154,7 @@ class ImportToMongo :
         self.__start_time = time.time()
 
         # GET Task Info
-        task_info = self.__api_helpter.api_get_task(self.__guid)
+        task_info = self.__api_helpter.api_get_task()
         if(task_info != None):
             self.__task_info = task_info
         else:

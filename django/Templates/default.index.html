@@ -78,10 +78,12 @@
                   <td>{$ i.args $}</td>
                   <td>{$ i.status $}</td>
                   <td>
-                    <button ng-click="func_start_task(i.guid)">START</button>
-                    <button ng-click="func_stop_task(i.guid)">STOP</button>
-                    <button ng-click="func_log_task(i.guid)">LOG</button>
-                    <button ng-click="func_edit_task(i.guid)">EDIT</button>
+
+                    <button ng-click="func_start_task(i.guid)" class="btn-success">START</button>
+                    <button ng-click="func_stop_task(i.guid)" class="btn-danger">STOP</button>
+                    <button ng-click="func_stop_task(i.guid)" class="btn-danger">STOP</button>
+                    <button ng-click="func_log_task(i.guid)" class="btn-warning">LOG</button>
+                    <button ng-click="func_edit_task(i.guid)" class="btn-warning">EDIT</button>
                   </td>
                 </tr>
               </tbody>
@@ -92,6 +94,16 @@
       </div>
     </div>
   </section> 
+
+  <div>
+  Status Table 
+  <ul>
+    <li>PENDING     #เพิ่งสร้าง</li>
+    <li>RUNNING     #กำลังทำงาน</li>
+    <li>FINISH      #ทำงานเสร็จสิ้น</li>
+    <li>TERMINATE   #ถูกสั่งให้หยุด</li>
+    <li>ERROR       #เกิด Error</li>
+  </div>
 
 </div>
 {% endblock %} 
@@ -108,7 +120,7 @@
       // TODO : Make it better
       {% comment %} setInterval(function(){
         $scope.func_show_all_task();
-       }, 5000); {% endcomment %}
+       }, 2000); {% endcomment %}
     };
     $scope.func_goto_create= function() {
        $window.location.href = '/create';

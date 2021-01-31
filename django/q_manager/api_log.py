@@ -62,9 +62,16 @@ def api_insert_log(request):
 def api_update_status(request):
     if  request.method == "POST" :
         guid = request.POST['guid']
+        status = request.POST['status']
 
         task_info = get_task_info(guid)
         if len(task_info) == 0:
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
+        sql = """ UPDATE q_manager.task_table
+                  SET status=%s   
+                  WHERE guid=%s;"""
+        params = (status, guid)
+        cursor.execute(sql, params)
+        return HttpResponse(status=200)
     pass
