@@ -16,20 +16,18 @@ ALTER TABLE q_manager.task_table
     OWNER to postgres;
 
 
-
-
 -- Table: q_manager.logs_table
 -- DROP TABLE q_manager.logs_table;
 CREATE TABLE q_manager.logs_table
 (
     id integer NOT NULL DEFAULT nextval('q_manager.logs_table_id_seq'::regclass),
+    pid integer,
     task_id integer,
-    create_time timestamp without time zone,
-    message character varying(255) COLLATE pg_catalog."default",
+    message text COLLATE pg_catalog."default",
     CONSTRAINT logs_table_pkey PRIMARY KEY (id)
 )
+
 TABLESPACE pg_default;
+
 ALTER TABLE q_manager.logs_table
     OWNER to postgres;
-
-	
