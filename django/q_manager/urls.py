@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from . import api
+from . import api_log
 
 
 urlpatterns = [
@@ -10,6 +11,11 @@ urlpatterns = [
     path('/update',views.update_view),
     path('/delete',views.delete_view),
     path('/monitor',views.monitor),
+
+    path('api/helper/insert_log', api_log.api_insert_log),
+    path('api/helper/get_task', api_log.api_get_task),
+    path('api/helper/update_status', api_log.api_update_status),
+
 
     path('api/show', api.api_show_all_task),
     path('api/create',  api.api_create_task),

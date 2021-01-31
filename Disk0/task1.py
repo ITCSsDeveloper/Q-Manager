@@ -3,29 +3,79 @@ import logging
 import os
 import time
 import sys
+import requests
 
+# Note 
+# สิ่งแรกที่ task ควรจะได้มาพร้อม args คือ guid
+# เพราะ ต้องใช้  guid ในการ (get task info, insert log)
+
+# exit()
 # Get Script path runing
 script_path = os.path.dirname(os.path.abspath(__file__))
+print('__name__', __name__)
 print('script_path', script_path)
 
 # Setup Logging
 logFormatter = "%(asctime)s %(levelname)s: %(message)s"
 logging.basicConfig( filename=F'{script_path}/logs/logs.log',
                     encoding='utf-8',
-                    level=logging.DEBUG,
+                    level=logging.INFO,
                     format=logFormatter,
                     filemode='a'
                     )
 console = logging.StreamHandler()
-console.setLevel(logging.DEBUG)
-formatter = logging.Formatter(logFormatter)
-console.setFormatter(formatter)
-logging.getLogger('').addHandler(console)
+console.setLevel(logging.INFO)
+console.setFormatter(logging.Formatter(logFormatter))
+logging.getLogger("").setLevel(logging.INFO)
+logging.getLogger("").addHandler(console)
+logging.getLogger("requests").setLevel(logging.CRITICAL)
+logging.getLogger("requests").addHandler(logging.NullHandler())
+
 
 # Connection
 conn_str = 'mongodb://mongodb:Password12345@localhost:27017'
 
+
+# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)
+class MyHelper:
+    __api_url = 'http://localhost:8000'
+    __guid = ""
+    __pid = ""
+
+    def __init__(self, guid, pid):
+        self.__guid = guid
+        self.__pid = pid
+        pass
+
+    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม
+    def api_get_task(self) :
+        url = F"{self.__api_url}/api/helper/get_task"
+        payload={'guid': self.__guid}
+        response = requests.request("POST", url, headers={}, data=payload, files=[])
+        if response.status_code == 200:
+            return 1
+        elif response.status_code == 404:
+            return None
+        pass
+
+    # Insert log ลง db
+    def api_log_insert(self, message): 
+        try :
+            url = F"{self.__api_url}/api/helper/insert_log"
+            payload={'guid': self.__guid,'pid': self.__pid, 'message': message}
+            requests.request("POST", url, headers={}, data=payload, files=[])
+        except:
+            print("Unexpected error:", sys.exc_info()[0])
+            pass
+        pass
+
+    def api_update_status(self):
+        pass
+    
+#END OF HELPER CLASS
+
 class ImportToMongo :
+    __guid = None
     __pid = None
     __myclient = None
     __mydb = None
@@ -42,26 +92,49 @@ class ImportToMongo :
     __file_name = ""
     __map_file_name = ""
 
-    def __init__(self):
-        logging.debug(F'Init Import To Mongo.')
-        self.__start_time = time.time()
-        
-        # Set PID
-        self.__pid = os.getpid()
-        logging.debug(F'PID = {self.__pid}' )
+    # __api_helpter = None
+    __task_info = None
 
+    
+    def log(self, message):
+        logging.info(message)
+        self.__api_helpter.api_log_insert(guid= self.__guid, pid= self.__pid, message=message)
+        pass
+
+    def __init__(self):
         # Get args
         self.get_args()
 
+        # Init MyHelper สำหรับ Insert Logs
+        self.__api_helpter = MyHelper()
+
+        # Set PID
+        self.__pid = os.getpid()
+        self.log(F'PID = {self.__pid}')
+        
         # Check args
+        if self.__guid == '':
+            self.log(F'-guid is required')
+            sys.exit()
         if self.__file_name == '':
-            logging.debug(F'-file_name is required')
+            self.log(F'-file_name is required')
             sys.exit()
         if self.__map_file_name == '':
-            logging.debug(F'-map_file_name is required')
+            self.log(F'-map_file_name is required')
             sys.exit()
         if self.__limit == 0:
-            logging.debug(F'-limit is required')
+            self.log(F'-limit is required')
+            sys.exit()
+
+        # REAL Start
+        self.__start_time = time.time()
+
+        # GET Task Info
+        task_info = self.__api_helpter.api_get_task(self.__guid)
+        if(task_info != None):
+            self.__task_info = task_info
+        else:
+            self.log(F'The registration information was not found.')
             sys.exit()
 
         # Setup Pymongo Connection String
@@ -69,8 +142,8 @@ class ImportToMongo :
         self.__mydb = self.__myclient['gcc'] # Create Database
         self.__mycol = self.__mydb['gcc']    # Create Collection
         self.__mycol.delete_many({})         # Clear Collection
-        logging.debug(F'DB Connected host={self.__myclient.HOST}:{self.__myclient.PORT}')
-        logging.debug(F'args limit={self.__limit}')
+        self.log(F'DB Connected host={self.__myclient.HOST}:{self.__myclient.PORT}')
+        self.log(F'args limit={self.__limit}')
         pass
     
     def time_convert(self, sec):
@@ -82,6 +155,8 @@ class ImportToMongo :
 
     def get_args(self):
         for a in sys.argv:
+            if "-guid=" in a: 
+                self.__guid = str(a.split('=')[1])
             if "-limit=" in a: 
                 self.__limit = int(a.split('=')[1])
             if "-header=" in a: 
@@ -140,11 +215,11 @@ class ImportToMongo :
         num_lines = sum(1 for line in open(file_name))  # Check Total Lines
         map_template = self.get_mapping_template()    
 
-        logging.debug(F'-------------------------------------------')
-        logging.debug(F'Total Lines {str(num_lines)}')
-        logging.debug(F'File Name : {file_name}')
-        logging.debug(F'Map File Name : {map_file_name}')
-        logging.debug(F'Start Import')
+        self.log(F'-------------------------------------------')
+        self.log(F'Total Lines {str(num_lines)}')
+        self.log(F'File Name : {file_name}')
+        self.log(F'Map File Name : {map_file_name}')
+        self.log(F'Start Import')
 
         # Start Process
         with open(file_name , mode="r") as f:
@@ -176,25 +251,25 @@ class ImportToMongo :
                         self.__mycol.insert_many(la_list_temp)     
                         row_inserted += len(la_list_temp)
                         
-                        logging.debug(F'Inserted = {str(row)} {str(row_inserted)}/{str(num_lines)}')
+                        self.log(F'Inserted = {str(row)} {str(row_inserted)}/{str(num_lines)}')
                         la_list_temp = []
                         row = 0
 
         self.__stop_time = time.time()
         time_lapsed = self.time_convert((self.__stop_time - self.__start_time) )
 
-        logging.debug(F'-------------------------------------------')
-        logging.debug(F'Complete')
-        logging.debug(F'Time lapsed : {time_lapsed}')
-        logging.debug(F'File Name : {file_name}')
-        logging.debug(F'Map File Name : {map_file_name}')
+        self.log(F'-------------------------------------------')
+        self.log(F'Complete')
+        self.log(F'Time lapsed : {time_lapsed}')
+        self.log(F'File Name : {file_name}')
+        self.log(F'Map File Name : {map_file_name}')
 
-        logging.debug(F'Insert Limit : {limit}')
-        logging.debug(F'Total Lines : {num_lines}')
-        logging.debug(F'Total Inserted : {row_inserted}')
-        logging.debug(F'Header : {header}')
-        logging.debug(F'Footer : {footer}')
-        logging.debug(F'-------------------------------------------')
+        self.log(F'Insert Limit : {limit}')
+        self.log(F'Total Lines : {num_lines}')
+        self.log(F'Total Inserted : {row_inserted}')
+        self.log(F'Header : {header}')
+        self.log(F'Footer : {footer}')
+        self.log(F'-------------------------------------------')
         pass # End of Start
 
 # Init App And Start Process
