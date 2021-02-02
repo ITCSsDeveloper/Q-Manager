@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from psycopg2.extras import RealDictCursor
 from bson import json_util
+import os
+import signal
 
 # ROOT DIR
 DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'
@@ -75,3 +77,74 @@ def api_update_status(request):
         cursor.execute(sql, params)
         return HttpResponse(status=200)
     pass
+
+@csrf_exempt
+def api_terminate_task(request):
+    pass
+
+
+@csrf_exempt
+def api_get_logs(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = get_task_info(guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        sql = F"""SELECT id, pid, task_id, message
+	             FROM q_manager.logs_table
+	             WHERE task_id = {task_info[0]['id']}"""
+        cursor.execute(sql)
+        result = json.dumps(cursor.fetchall(), default=json_util.default)
+        return HttpResponse(status=200, content=result, content_type="application/json" )
+    pass
+
+@csrf_exempt
+def api_clear_logs(request):
+    sql = """DELETE FROM q_manager.logs_table"""
+    cursor.execute(sql)
+    return HttpResponse(status=200, content="Clear Log Success")
+
+
+
+@csrf_exempt
+def api_update_pid(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+        pid = request.POST['pid']
+
+        task_info = get_task_info(guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        sql = """ UPDATE q_manager.task_table
+                  SET pid=%s   
+                  WHERE guid=%s;"""
+        params = (pid, guid)
+        cursor.execute(sql, params)
+        return HttpResponse(status=200)
+    pass
+
+
+@csrf_exempt
+def api_stop(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = get_task_info(guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        pid = task_info[0]['pid']
+        os.kill(pid, signal.SIGTERM)
+
+        sql = """ UPDATE q_manager.task_table
+                  SET pid=%s, status=%s
+                  WHERE guid=%s;"""
+        params = ('', "TERMINATE" ,guid)
+        cursor.execute(sql, params)
+        return HttpResponse(status=200)
+    pass
+    return HttpResponse('stop')
+

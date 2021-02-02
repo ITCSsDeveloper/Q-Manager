@@ -116,11 +116,10 @@
    
     $scope.init = function () {
       $scope.func_show_all_task();
-
       // TODO : Make it better
-      {% comment %} setInterval(function(){
+      setInterval(function(){
         $scope.func_show_all_task();
-       }, 2000); {% endcomment %}
+       }, 2000);
     };
     $scope.func_goto_create= function() {
        $window.location.href = '/create';
@@ -145,6 +144,7 @@
     };
 
     $scope.func_start_task = function(guid) {
+      ShowLoading(true);
       var _data = {
         'guid' : guid,
       }
@@ -154,6 +154,7 @@
           data: _data,
           success: function (res) {
               console.log(res)
+              ShowLoading(false);
           },
           error: function (jqXHR) {
             Swal.fire({

@@ -82,6 +82,19 @@ class MyHelper:
             pass
         pass
 
+    def api_update_pid(self):
+       try :
+           url = F"{self.__api_url}/api/helper/update_pid"
+           payload={   
+               'guid': self.__guid,
+               'pid': self.__pid
+           }
+           requests.request("POST", url, headers={}, data=payload, files=[])
+       except:
+           print("Unexpected error:", sys.exc_info()[0])
+           pass
+       pass
+
 #END OF HELPER CLASS
 
 class ImportToMongo :
@@ -118,11 +131,17 @@ class ImportToMongo :
         self.__api_helpter.api_log_insert(message=message)
         pass
     
-    #TODO ทำให้เป็นตัวแปร constant
     def change_status(self, stauts):
         self.log(F'Change Status To -> {stauts}')
         self.__api_helpter.api_update_status(status=stauts)
         pass
+
+    def update_pid(self):
+        self.log(F'Update PID -> {self.__pid}')
+        self.__api_helpter.api_update_pid()
+        pass
+
+
 
     def __init__(self):
         # Get args
@@ -133,7 +152,8 @@ class ImportToMongo :
 
          # Init MyHelper สำหรับ Insert Logs
         self.__api_helpter = MyHelper(self.__guid, self.__pid)
-        self.change_status(self.RUNNING)
+        self.change_status(self.RUNNING)  # UPDATE STATUS TO RUNNING
+        self.update_pid()
         self.log(F'PID = {self.__pid}')
         
         # Check args
@@ -294,6 +314,7 @@ class ImportToMongo :
         self.log(F'Header : {header}')
         self.log(F'Footer : {footer}')
         self.log(F'-------------------------------------------')
+        self.change_status(self.FINISH) # UPDATE STATUS TO FINISH
         pass # End of Start
 
 # Init App And Start Process

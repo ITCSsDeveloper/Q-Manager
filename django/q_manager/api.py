@@ -10,6 +10,8 @@ from psycopg2.extras import RealDictCursor
 from bson import json_util
 import sys
 import time
+import signal
+import os
 
 # ROOT DIR
 DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'
@@ -105,28 +107,26 @@ def api_start(request):
             comm = comm.replace("{DIR_TASK}", DIR_TASK)
             comm = comm.replace("{GUID}", guid)
             print('StartComm=', comm)
-            time.sleep(2.5)
+            # time.sleep(1)
             try:
                 po = subprocess.Popen(comm, shell=True)
             except:
                 print("Unexpected error:", sys.exc_info()[0])
-            time.sleep(2.5)
+            time.sleep(1)
 
             return HttpResponse(status=200)
         else :
-            return HttpResponse(status=403, content=F"Task {guid} Not Ready for Run")
+            return HttpResponse(status=403, content=F"Task Unavailable")
 
 def api_monitor(request):
     #TODO Get Last Status + Get Last Log
     return HttpResponse('monitor')
 
-def api_stop(request):
-    # TODO Send COmmadn to kill process by pid 
-    # AND UPDATE status to database
-    # https://stackoverflow.com/questions/17856928/how-to-terminate-process-from-python-using-pid
-    # os.kill(99999, signal.SIGTERM) #or signal.SIGKILL 
-    return HttpResponse('stop')
 
 def api_logs(request):
+    #TODO get all logs with pid or task_name
+    return HttpResponse('logs')
+
+def api_stop(request):
     #TODO get all logs with pid or task_name
     return HttpResponse('logs')
