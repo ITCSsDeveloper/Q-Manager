@@ -155,6 +155,8 @@ class ImportToMongo :
         self.change_status(self.RUNNING)  # UPDATE STATUS TO RUNNING
         self.update_pid()
         self.log(F'PID = {self.__pid}')
+
+        time.sleep(15)
         
         # Check args
         if self.__guid == '':

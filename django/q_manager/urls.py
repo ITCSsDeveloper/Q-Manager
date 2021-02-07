@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/helper/clear_logs', api_log.api_clear_logs),
     path('api/helper/get_logs', api_log.api_get_logs),
     path('api/helper/update_pid', api_log.api_update_pid),
+    
     path('api/helper/stop', api_log.api_stop),
 
     path('api/helper/reset', api_log.api_reset),

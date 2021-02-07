@@ -80,10 +80,6 @@ def api_update_status(request):
         return HttpResponse(status=200)
     pass
 
-@csrf_exempt
-def api_terminate_task(request):
-    pass
-
 
 @csrf_exempt
 def api_get_logs(request):
@@ -138,16 +134,25 @@ def api_stop(request):
         if len(task_info) == 0:
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
-        pid = task_info[0]['pid']
+        # Kill Process
+        pid = int(task_info[0]['pid'])
         os.kill(pid, signal.SIGTERM)
 
+        # Update Status To TERMINATE
         sql = """ UPDATE task_table
                   SET pid=%s, status=%s
                   WHERE guid=%s;"""
         params = ('', "TERMINATE" ,guid)
         cursor.execute(sql, params)
+
+        # UPDATE LOGS
+        sql  = F""" INSERT INTO logs_table(
+	                pid, task_id, message, date, time)
+	                VALUES (%s, %s, %s, LOCALTIMESTAMP, LOCALTIMESTAMP); """
+        record_to_insert = (pid, task_info[0]['id'], 'TERMINATE by User')
+        cursor.execute(sql, record_to_insert)
+
         return HttpResponse(status=200)
-    return HttpResponse('stop')
 
 @csrf_exempt
 def api_reset(request):

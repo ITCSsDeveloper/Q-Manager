@@ -131,6 +131,7 @@
   app.controller("taskMonitorCtrl", function ($scope, $window) {
     $scope.url_api_show_all_task = "api/task1/show_all";
     $scope.url_api_reset_task = "api/helper/reset";
+    $scope.url_api_stop_task = "api/helper/stop";
     $scope.task_list = []
    
     $scope.init = function () {
@@ -184,10 +185,27 @@
           },
         });
     }
-    $scope.func_stop_task = function(guid) {
-      console.log(guid)
 
-      //api/stop
+    $scope.func_stop_task = function(guid) {
+        ShowLoading(true);
+        var _data = {
+          'guid' : guid,
+        }
+        $.ajax({
+          type: "POST",
+          url: $scope.url_api_stop_task,
+          data: _data,
+          success: function (res) {
+              ShowLoading(false);
+          },
+          error: function (jqXHR) {
+            Swal.fire({
+              icon: "error",
+              title: jqXHR.status + ' ' + jqXHR.statusText  ,
+              text: jqXHR.responseText,
+            });
+          },
+        });
     }
     $scope.func_log_task = function(guid) {
       ShowLoading(true);
