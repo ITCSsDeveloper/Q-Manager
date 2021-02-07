@@ -20,3 +20,9 @@ def delete_view(request):
 # Monitor
 def monitor(request):
     return render(request, "monitor.index.html")
+
+
+# Logs
+def log_view(request):
+    _guid = request.GET['guid']
+    return render(request, "log.index.html")

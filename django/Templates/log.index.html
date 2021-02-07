@@ -1,0 +1,116 @@
+{% extends 'Layout/layout.default.html' %} 
+{% block style %}
+{% endblock %} 
+
+{% block content %}
+
+
+<div ng-controller="logTaskCtrl"  class="container" style="margin-top: 50px;">
+<div class="row">
+  <div class="col-6"><h3>Log Task</h3></div>
+  <div class="col-6 text-right">
+    <button ng-click="funcBtnBack()" class="btn btn-primary text-right" >Back</button>
+    <button ng-click="funcBtnBack()" class="btn btn-primary text-right" >Clear Logs</button>
+  </div>
+</div>
+  <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <table style="width: 100%" class="table table-hover"> 
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>PID</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="i in task_logs">
+                  <td>{$ i.timestamp $}</td>
+                  <td>{$ i.pid $}</td>
+                  <td>{$ i.message $}</td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+        </div>
+  </section> 
+
+</div>
+{% endblock %} 
+
+{% block script %}
+
+<script>
+  app.controller("logTaskCtrl", function ($scope, $window) {
+    $scope.guid = '';
+    $scope.url_api_get_logs = "api/helper/get_logs";
+    $scope.url_api_clear_logs = "api/helper/clear_logs";
+
+    $scope.task_logs = []
+
+    $scope.init = function () {
+      $scope.func_get_logs();
+      
+      setInterval(function(){
+        $scope.func_get_logs();
+       }, 1000);
+    };
+
+    $scope.funcBtnBack = function(){
+      $window.location.href = '/';
+    }
+
+    $scope.funcBtnClearLogs=function(){
+      
+      var _data = {
+        'guid' : $scope.task_name,
+      }
+
+      $.ajax({
+        type: "POST",
+        url: $scope.url_api_clear_logs,
+        data: _data,
+        success: function (res) {
+          Swal.fire({
+            icon: "success",
+            title: "สำเร็จ" ,
+            text: "สร้าง task สำเร็จ",
+          }).then(function() {
+            $window.location.href = '/';
+          });
+        },
+        error: function (jqXHR, exception) {
+          Swal.fire({
+            icon: "error",
+            title: jqXHR.status + ' ' + jqXHR.statusText  ,
+            text: jqXHR.responseText,
+          });
+        }
+      });
+    }
+
+    $scope.func_get_logs= function() {
+      var _data = {
+        'guid' : '9adb73ebabfa49fe9dd49f4d8f930675',
+      }
+        $.ajax({
+        type: "POST",
+        url: $scope.url_api_get_logs ,
+         data: _data,
+        success: function (res) {
+          $scope.$apply(function() {
+            $scope.task_logs = res;
+          }); 
+        },
+        error: function (jqXHR) {
+        },
+      });
+    }
+
+    $scope.init();
+  });
+</script>
+
+{% endblock %} 

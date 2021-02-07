@@ -78,12 +78,18 @@
                   <td>{$ i.args $}</td>
                   <td>{$ i.status $}</td>
                   <td>
-
-                    <button ng-click="func_start_task(i.guid)" class="btn-success">START</button>
-                    <button ng-click="func_stop_task(i.guid)" class="btn-danger">STOP</button>
-                    <button ng-click="func_stop_task(i.guid)" class="btn-danger">STOP</button>
-                    <button ng-click="func_log_task(i.guid)" class="btn-warning">LOG</button>
-                    <button ng-click="func_edit_task(i.guid)" class="btn-warning">EDIT</button>
+                    <div ng-if="i.status == 'PENDING'">
+                      <button ng-click="func_start_task(i.guid)" 
+                              class="btn-success">START</button>
+                    </div>
+                    <div ng-if="i.status == 'PENDING'">
+                    <button ng-click="func_stop_task(i.guid)" 
+                            class="btn-danger">STOP</button>
+                    </div>
+                    <button ng-click="func_log_task(i.guid)" 
+                            class="btn-warning">LOG</button>
+                    <button ng-click="func_edit_task(i.guid)" 
+                            class="btn-warning">EDIT</button>
                   </td>
                 </tr>
               </tbody>
@@ -171,9 +177,8 @@
       //api/stop
     }
     $scope.func_log_task = function(guid) {
-      console.log(guid)
-
-      //api/log
+      ShowLoading(true);
+      $window.location.href = '/logs?guid=' + guid;
     }
     $scope.func_edit_task = function(guid) {
       console.log(guid)

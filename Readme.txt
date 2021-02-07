@@ -66,7 +66,7 @@ Install Extension On VS Code
 connection string เชื่อมต่อ  mongoDb
 - mongodb://{username}:{password}@{host}:{port}
 
-
+mongodb://mongodb:Password12345@localhost:27017
 
 python3 main.py -file_name={DIR_TASK}/data/LA00000.GCC -map_file_name={DIR_TASK}/data/LA00000.MAP -limit=100 -header=HT -body=DT -footer=FT -guid={GUID}
 python3 /Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0/Task1.py -file_name=/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0/data/LA00000.GCC -map_file_name=/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0/data/LA00000.MAP -limit=100 -header=HT -body=DT -footer=FT -guid=9adb73ebabfa49fe9dd49f4d8f930675

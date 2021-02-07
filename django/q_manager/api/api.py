@@ -27,6 +27,7 @@ connection.set_session(autocommit=True)
 cursor = connection.cursor(cursor_factory = RealDictCursor)
 
 # Start API
+@csrf_exempt
 def api_show_all_task(request):
     sql = "SELECT * FROM q_manager.task_table ORDER BY id"
     cursor.execute(sql)
@@ -118,15 +119,17 @@ def api_start(request):
         else :
             return HttpResponse(status=403, content=F"Task Unavailable")
 
+@csrf_exempt
 def api_monitor(request):
     #TODO Get Last Status + Get Last Log
     return HttpResponse('monitor')
 
-
+@csrf_exempt
 def api_logs(request):
     #TODO get all logs with pid or task_name
     return HttpResponse('logs')
 
+@csrf_exempt
 def api_stop(request):
     #TODO get all logs with pid or task_name
     return HttpResponse('logs')
