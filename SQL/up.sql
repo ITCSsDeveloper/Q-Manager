@@ -24,6 +24,7 @@ CREATE TABLE q_manager.logs_table
     pid integer,
     task_id integer,
     message text COLLATE pg_catalog."default",
+    timestamp timestamp DEFAULT (current_timestamp AT TIME ZONE 'UTC')
     CONSTRAINT logs_table_pkey PRIMARY KEY (id)
 )
 
@@ -31,3 +32,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE q_manager.logs_table
     OWNER to postgres;
+
+
+    

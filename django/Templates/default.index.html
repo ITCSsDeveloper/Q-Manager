@@ -26,6 +26,9 @@
       transform: rotate(360deg);
     }
   }
+  .btn {
+    min-width: 80px;
+  }
 </style>
 {% endblock %} 
 
@@ -80,16 +83,25 @@
                   <td>
                     <div ng-if="i.status == 'PENDING'">
                       <button ng-click="func_start_task(i.guid)" 
-                              class="btn-success">START</button>
+                              class="btn btn-sm btn-success">START</button>
                     </div>
-                    <div ng-if="i.status == 'PENDING'">
-                    <button ng-click="func_stop_task(i.guid)" 
-                            class="btn-danger">STOP</button>
+
+                    <div ng-if="i.status != 'PENDING' && i.status != 'FINISH' && i.status != 'TERMINATE' && i.status != 'ERROR' ">
+                      <button ng-click="func_stop_task(i.guid)" 
+                              class="btn btn-sm btn-danger">STOP</button>
                     </div>
+
+                    <div ng-if="i.status != 'PENDING' && i.status != 'RUNNING'">
+                      <button ng-click="func_reset_task(i.guid)" 
+                              class="btn btn-sm btn-success">Reset</button>
+                    </div>
+
+
                     <button ng-click="func_log_task(i.guid)" 
-                            class="btn-warning">LOG</button>
+                            class="btn btn-sm btn-default">LOG</button>
+{% comment %} 
                     <button ng-click="func_edit_task(i.guid)" 
-                            class="btn-warning">EDIT</button>
+                            class="btn btn-warning">EDIT</button> {% endcomment %}
                   </td>
                 </tr>
               </tbody>
@@ -118,6 +130,7 @@
 <script>
   app.controller("taskMonitorCtrl", function ($scope, $window) {
     $scope.url_api_show_all_task = "api/task1/show_all";
+    $scope.url_api_reset_task = "api/helper/reset";
     $scope.task_list = []
    
     $scope.init = function () {
@@ -184,7 +197,27 @@
       console.log(guid)
       //redirect to edit
     }
-
+    $scope.func_reset_task = function(guid) {
+      ShowLoading(true);
+      var _data = {
+        'guid' : guid,
+      }
+      $.ajax({
+          type: "POST",
+          url: $scope.url_api_reset_task,
+          data: _data,
+          success: function (res) {
+              ShowLoading(false);
+          },
+          error: function (jqXHR) {
+            Swal.fire({
+              icon: "error",
+              title: jqXHR.status + ' ' + jqXHR.statusText  ,
+              text: jqXHR.responseText,
+            });
+          },
+        });
+    }
 
 
     $scope.init();

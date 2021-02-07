@@ -25,4 +25,4 @@ def monitor(request):
 # Logs
 def log_view(request):
     _guid = request.GET['guid']
-    return render(request, "log.index.html")
+    return render(request, "log.index.html", { 'guid': _guid } )
