@@ -1,0 +1,3 @@
+"id"	"task_name"	"pid"	"status"	"guid"	"file_name"	"args"
+14	"Task1 GCC"	"9982"	"RUNNING"	"9adb73ebabfa49fe9dd49f4d8f930675"	"Task1.py"	"-file_name={DIR_TASK}/data/LA00000.GCC -map_file_name={DIR_TASK}/data/LA00000.MAP -limit=10 -header=HT -body=DT -footer=FT -guid={GUID}"
+15	"Task2 ACC"		"PENDING"	"c1a5ee25738d433bb208c0cf67bd7d60"	"Task2.py"	"-file_name={DIR_TASK}/data/LA00000.GCC -map_file_name={DIR_TASK}/data/LA00000.MAP -limit=10 -header=HT -body=DT -footer=FT -guid={GUID}"
