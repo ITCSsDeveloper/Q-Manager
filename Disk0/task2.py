@@ -19,10 +19,10 @@ mo_user = 'mongodb'        # Password
 mo_pass = 'Password12345'  # Password
 mo_port = '27017'          # Port
 
-mo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )
-mo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )
+mo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )
+mo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )
 
-log_name = 'log_gcc.log' # Log file name
+log_name = 'log_acc.log' # Log file name
 #############################################################
 
 """

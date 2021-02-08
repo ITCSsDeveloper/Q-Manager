@@ -32,8 +32,5 @@ urlpatterns = [
     path('api/show', api.api_show_all_task),
     path('api/create',  api.api_create_task),
     path('api/delete',  api.api_delete_task),
-    path('api/start',  api.api_start),
-    path('api/monitor',  api.api_monitor),
-    path('api/stop',  api.api_stop),
-    path('api/logs', api.api_logs)
+    path('api/start',  api.api_start)
 ]

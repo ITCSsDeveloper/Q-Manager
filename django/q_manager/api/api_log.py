@@ -80,7 +80,6 @@ def api_update_status(request):
         return HttpResponse(status=200)
     pass
 
-
 @csrf_exempt
 def api_get_logs(request):
     if  request.method == "POST" :
@@ -100,7 +99,7 @@ def api_get_logs(request):
                     order by id 
                     limit 1000
                 ) as A
-                order by A.id asc 
+                order by A.id DESC 
               """
         cursor.execute(sql)
         result = json.dumps(cursor.fetchall(), default=json_util.default)

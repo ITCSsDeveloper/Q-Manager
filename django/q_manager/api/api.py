@@ -118,18 +118,3 @@ def api_start(request):
             return HttpResponse(status=200)
         else :
             return HttpResponse(status=403, content=F"Task Unavailable")
-
-@csrf_exempt
-def api_monitor(request):
-    #TODO Get Last Status + Get Last Log
-    return HttpResponse('monitor')
-
-@csrf_exempt
-def api_logs(request):
-    #TODO get all logs with pid or task_name
-    return HttpResponse('logs')
-
-@csrf_exempt
-def api_stop(request):
-    #TODO get all logs with pid or task_name
-    return HttpResponse('logs')
