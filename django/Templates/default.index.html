@@ -132,14 +132,12 @@
     $scope.url_api_show_all_task = "api/task1/show_all";
     $scope.url_api_reset_task = "api/helper/reset";
     $scope.url_api_stop_task = "api/helper/stop";
+    $scope.url_api_delete_task = "api/helper/delete";
+
     $scope.task_list = []
    
     $scope.init = function () {
       $scope.func_show_all_task();
-      // TODO : Make it better
-      setInterval(function(){
-        $scope.func_show_all_task();
-       }, 1000);
     };
     $scope.func_goto_create= function() {
        $window.location.href = '/create';
@@ -154,15 +152,9 @@
           }); 
         },
         error: function (jqXHR) {
-          /* Swal.fire({
-            icon: "error",
-            title: jqXHR.status + ' ' + jqXHR.statusText  ,
-            text: jqXHR.responseText,
-          }); */
         },
       });
     };
-
     $scope.func_start_task = function(guid) {
       ShowLoading(true);
       var _data = {
@@ -185,7 +177,6 @@
           },
         });
     }
-
     $scope.func_stop_task = function(guid) {
         ShowLoading(true);
         var _data = {
@@ -236,8 +227,9 @@
           },
         });
     }
+    $scope.func_delete_tasl = function(guid) {
 
-
+    }
     $scope.init();
   });
 </script>

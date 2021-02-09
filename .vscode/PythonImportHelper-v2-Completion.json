@@ -1,0 +1,957 @@
+[
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "pymongo",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2.extras",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
+        "detail": "psycopg2.extras",
+        "documentation": {}
+    },
+    {
+        "label": "RealDictCursor",
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
+        "isExtraImport": true,
+        "detail": "psycopg2.extras",
+        "documentation": {}
+    },
+    {
+        "label": "RealDictCursor",
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
+        "isExtraImport": true,
+        "detail": "psycopg2.extras",
+        "documentation": {}
+    },
+    {
+        "label": "TRANSACTION_STATUS_ACTIVE",
+        "importPath": "psycopg2.extensions",
+        "description": "psycopg2.extensions",
+        "isExtraImport": true,
+        "detail": "psycopg2.extensions",
+        "documentation": {}
+    },
+    {
+        "label": "TRANSACTION_STATUS_ACTIVE",
+        "importPath": "psycopg2.extensions",
+        "description": "psycopg2.extensions",
+        "isExtraImport": true,
+        "detail": "psycopg2.extensions",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "json_util",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
+        "label": "json_util",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "api_get_task",
+        "kind": 2,
+        "importPath": "Disk0.MyHelper",
+        "description": "Disk0.MyHelper",
+        "peekOfCode": "def api_get_task(self, guid) :\n    url = F\"{self.__api_url}/api/helper/get_task\"\n    payload={'guid': guid}\n    files=[]\n    headers = {}\n    response = requests.request(\"POST\", url, headers=headers, data=payload, files=files)\n    if response.status_code == 200:\n        return response.json()\n    elif response.status_code == 404:\n        return None",
+        "detail": "Disk0.MyHelper",
+        "documentation": {}
+    },
+    {
+        "label": "__api_url",
+        "kind": 5,
+        "importPath": "Disk0.MyHelper",
+        "description": "Disk0.MyHelper",
+        "peekOfCode": "__api_url = 'http://localhost:8000'\ndef api_get_task(self, guid) :\n    url = F\"{self.__api_url}/api/helper/get_task\"\n    payload={'guid': guid}\n    files=[]\n    headers = {}\n    response = requests.request(\"POST\", url, headers=headers, data=payload, files=files)\n    if response.status_code == 200:\n        return response.json()\n    elif response.status_code == 404:",
+        "detail": "Disk0.MyHelper",
+        "documentation": {}
+    },
+    {
+        "label": "MyHelper",
+        "kind": 6,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "class MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid\n        pass\n    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม\n    def api_get_task(self) :",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "ImportToMong",
+        "kind": 6,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "class ImportToMongo :\n    __guid = \"\"\n    __pid = \"\"\n    __myclient = None\n    __mydb = None\n    __mycol = None\n    __start_time = None\n    __stop_time = None\n    __limit = 0\n    __header = \"HT\"",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_host",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_user",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_pass",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_port",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_database",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "mo_collection",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "mo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "log_name",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "log_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )\n    #ENDHEADER  ( คือ ระบุว่าให้หยุดอ่านข้อมูลของ  Header )",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "script_path",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "script_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',\n                    level=logging.INFO,\n                    format=logFormatter,\n                    filemode='a'",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "logFormatter",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "logFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',\n                    level=logging.INFO,\n                    format=logFormatter,\n                    filemode='a'\n                    )\nconsole = logging.StreamHandler()\nconsole.setLevel(logging.INFO)\nconsole.setFormatter(logging.Formatter(logFormatter))",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "console",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "console = logging.StreamHandler()\nconsole.setLevel(logging.INFO)\nconsole.setFormatter(logging.Formatter(logFormatter))\nlogging.getLogger(\"\").setLevel(logging.INFO)\nlogging.getLogger(\"\").addHandler(console)\nlogging.getLogger(\"requests\").setLevel(logging.CRITICAL)\nlogging.getLogger(\"requests\").addHandler(logging.NullHandler())\n# Connection\nconn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "conn_str",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\n# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)\nclass MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "Disk0.task1",
+        "description": "Disk0.task1",
+        "peekOfCode": "app = ImportToMongo()\napp.start()\ndel(app)",
+        "detail": "Disk0.task1",
+        "documentation": {}
+    },
+    {
+        "label": "MyHelper",
+        "kind": 6,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "class MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid\n        pass\n    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม\n    def api_get_task(self) :",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "ImportToMong",
+        "kind": 6,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "class ImportToMongo :\n    __guid = \"\"\n    __pid = \"\"\n    __myclient = None\n    __mydb = None\n    __mycol = None\n    __start_time = None\n    __stop_time = None\n    __limit = 0\n    __header = \"HT\"",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_host",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_user",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_pass",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_port",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_database",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "mo_collection",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "mo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "log_name",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "log_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )\n    #ENDHEADER  ( คือ ระบุว่าให้หยุดอ่านข้อมูลของ  Header )",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "script_path",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "script_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',\n                    level=logging.INFO,\n                    format=logFormatter,\n                    filemode='a'",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "logFormatter",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "logFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',\n                    level=logging.INFO,\n                    format=logFormatter,\n                    filemode='a'\n                    )\nconsole = logging.StreamHandler()\nconsole.setLevel(logging.INFO)\nconsole.setFormatter(logging.Formatter(logFormatter))",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "console",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "console = logging.StreamHandler()\nconsole.setLevel(logging.INFO)\nconsole.setFormatter(logging.Formatter(logFormatter))\nlogging.getLogger(\"\").setLevel(logging.INFO)\nlogging.getLogger(\"\").addHandler(console)\nlogging.getLogger(\"requests\").setLevel(logging.CRITICAL)\nlogging.getLogger(\"requests\").addHandler(logging.NullHandler())\n# Connection\nconn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "conn_str",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\n# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)\nclass MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "Disk0.task2",
+        "description": "Disk0.task2",
+        "peekOfCode": "app = ImportToMongo()\napp.start()\ndel(app)",
+        "detail": "Disk0.task2",
+        "documentation": {}
+    },
+    {
+        "label": "db_class",
+        "kind": 6,
+        "importPath": "django.q_manager.Repository.db_file",
+        "description": "django.q_manager.Repository.db_file",
+        "peekOfCode": "class db_class:\n    connection = None\n    cursor = None\n    def __init__(self):\n        if self.cursor == None:\n            self.connection = psycopg2.connect(host=\"127.0.0.1\",\n                                    port=\"5432\",\n                                    user=\"postgres\", \n                                    password=\"Password12345\",\n                                    database=\"postgres\", ",
+        "detail": "django.q_manager.Repository.db_file",
+        "documentation": {}
+    },
+    {
+        "label": "db_task_repo",
+        "kind": 6,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "class db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)\n        return self.cursor.fetchall()\n    def check_duplicate_task_name(self, task_name):",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "api_show_all_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "def api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt\ndef api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : ",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "api_create_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "def api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : \n            return HttpResponse(status=409, content=\"Duplicate Task Name\")\n        db_task.create_task(task_name=task_name,\n                            pid='', status= \"PENDING\",guid=str(uuid.uuid4().hex),\n                            file_name=file_name, task_args=task_args)",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "api_delete_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "def api_delete_task(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        if db_task.get_one_task(guid=guid) == [] : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.delete_task(guid=guid)\n        return HttpResponse(status=200, content= F\"Delete Task {guid} Complete\")\n    else :\n        return HttpResponse(status=405, content=\"Method not allow\")\n@csrf_exempt",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "api_start",
+        "kind": 2,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "def api_start(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        # GET INFO TASK\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0 : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Validate Task Can Run ?\n        row = task_info[0]\n        if row['status'] == 'PENDING' :",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "DIR_TASK",
+        "kind": 5,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\n# Init DB Class\nclass db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "db_task",
+        "kind": 5,
+        "importPath": "django.q_manager.api",
+        "description": "django.q_manager.api",
+        "peekOfCode": "db_task = db_task_repo()\n# db_task.check_duplicate_task_name('Task1')\n# db_task.create_task('test1', '10001', 'PENDING', 'GUID', 'pyname.py', 'task_args')\n# xx = db_task.get_one_task('GUID')\n# Start API\n@csrf_exempt\ndef api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt",
+        "detail": "django.q_manager.api",
+        "documentation": {}
+    },
+    {
+        "label": "get_task_info",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def get_task_info(guid) :\n    sql = F\"SELECT * FROM task_table T WHERE T.guid = '{guid}' LIMIT 1\"\n    cursor.execute(sql)\n    results = cursor.fetchall()\n    return results\n@csrf_exempt\ndef api_get_task(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_get_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_get_task(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404)\n        result = json.dumps(task_info[0], default=json_util.default)\n        return HttpResponse(status=200, content=result, content_type=\"application/json\")\n@csrf_exempt\ndef api_insert_log(request):",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_insert_log",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_insert_log(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        pid = request.POST['pid']\n        message = request.POST['message']\n        dt = datetime.now()\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql  = F\"\"\" INSERT INTO logs_table(",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_update_status",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_update_status(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        status = request.POST['status']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = \"\"\" UPDATE task_table\n                  SET status=%s   \n                  WHERE guid=%s;\"\"\"",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_get_logs",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_get_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = F\"\"\"\n                select * \n                from (\n                    select ",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_update_pid",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_update_pid(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        pid = request.POST['pid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = \"\"\" UPDATE task_table\n                  SET pid=%s   \n                  WHERE guid=%s;\"\"\"",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_stop",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info[0]['pid'])\n        os.kill(pid, signal.SIGTERM)\n        # Update Status To TERMINATE",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_reset",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_reset(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = \"\"\" UPDATE task_table SET pid=%s, status=%s WHERE id=%s \"\"\"\n        params = ('', \"PENDING\", task_info[0]['id'])\n        cursor.execute(sql, params)\n        return HttpResponse(status=200)",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "api_clear_logs",
+        "kind": 2,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "def api_clear_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = F\"\"\" DELETE FROM logs_table WHERE task_id = '{task_info[0]['id']}'\"\"\"\n        cursor.execute(sql)\n        return HttpResponse(status=200)",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "DIR_TASK",
+        "kind": 5,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\n# Init Connection\nconnection = psycopg2.connect(host=\"127.0.0.1\",\n                              port=\"5432\",\n                              user=\"postgres\", \n                              password=\"Password12345\",\n                              database=\"postgres\", \n                              options=\"-c search_path=dbo,q_manager\")\nconnection.set_session(autocommit=True)\ncursor = connection.cursor(cursor_factory = RealDictCursor)",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "connection = psycopg2.connect(host=\"127.0.0.1\",\n                              port=\"5432\",\n                              user=\"postgres\", \n                              password=\"Password12345\",\n                              database=\"postgres\", \n                              options=\"-c search_path=dbo,q_manager\")\nconnection.set_session(autocommit=True)\ncursor = connection.cursor(cursor_factory = RealDictCursor)\n@csrf_exempt\ndef get_task_info(guid) :",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "django.q_manager.api_log",
+        "description": "django.q_manager.api_log",
+        "peekOfCode": "cursor = connection.cursor(cursor_factory = RealDictCursor)\n@csrf_exempt\ndef get_task_info(guid) :\n    sql = F\"SELECT * FROM task_table T WHERE T.guid = '{guid}' LIMIT 1\"\n    cursor.execute(sql)\n    results = cursor.fetchall()\n    return results\n@csrf_exempt\ndef api_get_task(request):\n    if  request.method == \"POST\" :",
+        "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "django.q_manager.asgi",
+        "description": "django.q_manager.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "django.q_manager.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = '6n0ggx9ibe_^6uckra%^h$37*2$rp24v@5)&tq-h+6padm)(d*'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "SECRET_KEY = '6n0ggx9ibe_^6uckra%^h$37*2$rp24v@5)&tq-h+6padm)(d*'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'q_manager.urls'",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "ROOT_URLCONF = 'q_manager.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [\n            os.path.join(BASE_DIR, \"templates\")\n        ],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [\n            os.path.join(BASE_DIR, \"templates\")\n        ],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'q_manager.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/3.1/ref/settings/#databases\nDATABASES = {\n  'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'postgres',\n        'USER': 'postgres',\n        'PASSWORD': 'Password12345',\n        'HOST': 'localhost',",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "DATABASES = {\n  'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'postgres',\n        'USER': 'postgres',\n        'PASSWORD': 'Password12345',\n        'HOST': 'localhost',\n        'PORT': '5432',\n    }\n}",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Ref : https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files\nSTATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Ref : https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files\nSTATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Ref : https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files\nSTATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),\n)",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_L10N",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "USE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Ref : https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files\nSTATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),\n)\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# Ref : https://www.digitalocean.com/community/tutorials/working-with-django-templates-static-files\nSTATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),\n)\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "STATIC_URL = '/static/'\n# Add these new lines\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),\n)\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'Static'),\n)\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "django.q_manager.settings",
+        "description": "django.q_manager.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')",
+        "detail": "django.q_manager.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "django.q_manager.urls",
+        "description": "django.q_manager.urls",
+        "peekOfCode": "urlpatterns = [\n    path('',views.index),\n    path('create',views.create_view),\n    path('logs',views.log_view),\n    path('/update',views.update_view),\n    path('/delete',views.delete_view),\n    path('/monitor',views.monitor),\n    path('api/helper/insert_log', api_log.api_insert_log),\n    path('api/helper/get_task', api_log.api_get_task),\n    path('api/helper/update_status', api_log.api_update_status),",
+        "detail": "django.q_manager.urls",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def index(request):\n    return render(request, \"default.index.html\")\n# Create\ndef create_view(request):\n    return render(request, \"create.index.html\")\n# Update\ndef update_view(request):\n    return render(request, \"update.index.html\")\n# Delete\ndef delete_view(request):",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_view",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def create_view(request):\n    return render(request, \"create.index.html\")\n# Update\ndef update_view(request):\n    return render(request, \"update.index.html\")\n# Delete\ndef delete_view(request):\n    return render(request, \"delete.index.html\")\n# Monitor\ndef monitor(request):",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "update_view",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def update_view(request):\n    return render(request, \"update.index.html\")\n# Delete\ndef delete_view(request):\n    return render(request, \"delete.index.html\")\n# Monitor\ndef monitor(request):\n    return render(request, \"monitor.index.html\")\n# Logs\ndef log_view(request):",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_view",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def delete_view(request):\n    return render(request, \"delete.index.html\")\n# Monitor\ndef monitor(request):\n    return render(request, \"monitor.index.html\")\n# Logs\ndef log_view(request):\n    _guid = request.GET['guid']\n    return render(request, \"log.index.html\", { 'guid': _guid } )",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "monitor",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def monitor(request):\n    return render(request, \"monitor.index.html\")\n# Logs\ndef log_view(request):\n    _guid = request.GET['guid']\n    return render(request, \"log.index.html\", { 'guid': _guid } )",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "log_view",
+        "kind": 2,
+        "importPath": "django.q_manager.views",
+        "description": "django.q_manager.views",
+        "peekOfCode": "def log_view(request):\n    _guid = request.GET['guid']\n    return render(request, \"log.index.html\", { 'guid': _guid } )",
+        "detail": "django.q_manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "django.q_manager.wsgi",
+        "description": "django.q_manager.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "django.q_manager.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "django.manage",
+        "description": "django.manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'q_manager.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "django.manage",
+        "documentation": {}
+    }
+]
