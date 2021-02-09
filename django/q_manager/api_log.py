@@ -6,8 +6,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from psycopg2.extras import RealDictCursor
 from bson import json_util
-import os
-import signal
 from datetime import datetime
 
 # ROOT DIR
@@ -123,59 +121,3 @@ def api_update_pid(request):
         cursor.execute(sql, params)
         return HttpResponse(status=200)
     pass
-
-@csrf_exempt
-def api_stop(request):
-    if  request.method == "POST" :
-        guid = request.POST['guid']
-
-        task_info = get_task_info(guid)
-        if len(task_info) == 0:
-            return HttpResponse(status=404, content= F"Task {guid} Not Found")
-
-        # Kill Process
-        pid = int(task_info[0]['pid'])
-        os.kill(pid, signal.SIGTERM)
-
-        # Update Status To TERMINATE
-        sql = """ UPDATE task_table
-                  SET pid=%s, status=%s
-                  WHERE guid=%s;"""
-        params = ('', "TERMINATE" ,guid)
-        cursor.execute(sql, params)
-
-        # UPDATE LOGS
-        sql  = F""" INSERT INTO logs_table(
-	                pid, task_id, message, date, time)
-	                VALUES (%s, %s, %s, LOCALTIMESTAMP, LOCALTIMESTAMP); """
-        record_to_insert = (pid, task_info[0]['id'], 'TERMINATE by User')
-        cursor.execute(sql, record_to_insert)
-
-        return HttpResponse(status=200)
-
-@csrf_exempt
-def api_reset(request):
-    if  request.method == "POST" :
-        guid = request.POST['guid']
-
-        task_info = get_task_info(guid)
-        if len(task_info) == 0:
-            return HttpResponse(status=404, content= F"Task {guid} Not Found")
-
-        sql = """ UPDATE task_table SET pid=%s, status=%s WHERE id=%s """
-        params = ('', "PENDING", task_info[0]['id'])
-        cursor.execute(sql, params)
-        return HttpResponse(status=200)
-
-@csrf_exempt
-def api_clear_logs(request):
-    if  request.method == "POST" :
-        guid = request.POST['guid']
-
-        task_info = get_task_info(guid)
-        if len(task_info) == 0:
-            return HttpResponse(status=404, content= F"Task {guid} Not Found")
-
-        sql = F""" DELETE FROM logs_table WHERE task_id = '{task_info[0]['id']}'"""
-        cursor.execute(sql)
-        return HttpResponse(status=200)

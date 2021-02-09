@@ -161,15 +161,6 @@
         "documentation": {}
     },
     {
-        "label": "signal",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "signal",
-        "description": "signal",
-        "detail": "signal",
-        "documentation": {}
-    },
-    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -178,21 +169,12 @@
         "documentation": {}
     },
     {
-        "label": "uuid",
+        "label": "os,",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "subprocess",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
+        "importPath": "os.",
+        "description": "os.",
+        "detail": "os.",
         "documentation": {}
     },
     {
@@ -577,33 +559,6 @@
         "documentation": {}
     },
     {
-        "label": "api_stop",
-        "kind": 2,
-        "importPath": "django.q_manager.api_log",
-        "description": "django.q_manager.api_log",
-        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info[0]['pid'])\n        os.kill(pid, signal.SIGTERM)\n        # Update Status To TERMINATE",
-        "detail": "django.q_manager.api_log",
-        "documentation": {}
-    },
-    {
-        "label": "api_reset",
-        "kind": 2,
-        "importPath": "django.q_manager.api_log",
-        "description": "django.q_manager.api_log",
-        "peekOfCode": "def api_reset(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = \"\"\" UPDATE task_table SET pid=%s, status=%s WHERE id=%s \"\"\"\n        params = ('', \"PENDING\", task_info[0]['id'])\n        cursor.execute(sql, params)\n        return HttpResponse(status=200)",
-        "detail": "django.q_manager.api_log",
-        "documentation": {}
-    },
-    {
-        "label": "api_clear_logs",
-        "kind": 2,
-        "importPath": "django.q_manager.api_log",
-        "description": "django.q_manager.api_log",
-        "peekOfCode": "def api_clear_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = F\"\"\" DELETE FROM logs_table WHERE task_id = '{task_info[0]['id']}'\"\"\"\n        cursor.execute(sql)\n        return HttpResponse(status=200)",
-        "detail": "django.q_manager.api_log",
-        "documentation": {}
-    },
-    {
         "label": "DIR_TASK",
         "kind": 5,
         "importPath": "django.q_manager.api_log",
@@ -676,11 +631,38 @@
         "documentation": {}
     },
     {
+        "label": "api_stop",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info[0]['pid'])\n        os.kill(pid, signal.SIGTERM)\n        db_task.task_update_status(guid=guid, status=\"TERMINATE\")",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_reset",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_reset(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.task_update_status(guid=guid, status=\"PENDING\")\n        db_task.task_log(pid='', task_id=task_info[0]['id'], message='Reset to PENDING by User')\n        return HttpResponse(status=200)\n@csrf_exempt",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_clear_logs",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_clear_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.clear_log(task_id=task_info[0]['id'])\n        return HttpResponse(status=200)",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
         "label": "DIR_TASK",
         "kind": 5,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\n# Init DB Class\nclass db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)",
+        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\nclass db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)\n        return self.cursor.fetchall()",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },

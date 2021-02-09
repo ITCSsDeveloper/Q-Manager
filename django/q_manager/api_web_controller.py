@@ -1,8 +1,4 @@
-
-import json
-import uuid 
-import sys
-import subprocess
+import os, signal, json, uuid, sys, subprocess
 from bson import json_util
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -11,9 +7,6 @@ from .Repository.db_file import db_class
 
 # ROOT DIR
 DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'
-
-# Init DB Class
-
 
 class db_task_repo:
     cursor : any
@@ -54,6 +47,27 @@ class db_task_repo:
     
     def delete_task(self,guid):
         sql = F"DELETE FROM task_table T WHERE T.guid = '{guid}' "
+        self.cursor.execute(sql)
+        return True
+
+    def task_update_status(self, guid, status):
+        sql = "UPDATE task_table SET pid=%s, status=%s WHERE guid=%s;"
+        params = ('', status ,guid)
+        self.cursor.execute(sql, params)
+        return True
+
+    #TODO แยกออกไปเป็น TaskLogRepo
+    def task_log(self, pid, task_id, message) :
+        sql  = """ INSERT INTO logs_table(
+	                pid, task_id, message, date, time)
+	                VALUES (%s, %s, %s, LOCALTIMESTAMP, LOCALTIMESTAMP); """
+        record_to_insert = (pid, task_id, message)
+        self.cursor.execute(sql, record_to_insert)
+        return True
+        
+    #TODO แยกออกไปเป็น TaskLogRepo
+    def clear_log(self, task_id):
+        sql = F""" DELETE FROM logs_table WHERE task_id = '{task_id}'"""
         self.cursor.execute(sql)
         return True
 
@@ -130,3 +144,47 @@ def api_start(request):
             return HttpResponse(status=200)
         else :
             return HttpResponse(status=403, content=F"Task Unavailable")
+
+@csrf_exempt
+def api_stop(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = db_task.get_one_task(guid=guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        # Kill Process
+        pid = int(task_info[0]['pid'])
+        os.kill(pid, signal.SIGTERM)
+
+        db_task.task_update_status(guid=guid, status="TERMINATE")
+        db_task.task_log(pid=pid, task_id=task_info[0]['id'], message='TERMINATE by User')
+
+        return HttpResponse(status=200)
+
+@csrf_exempt
+def api_reset(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = db_task.get_one_task(guid=guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        db_task.task_update_status(guid=guid, status="PENDING")
+        db_task.task_log(pid='', task_id=task_info[0]['id'], message='Reset to PENDING by User')
+
+        return HttpResponse(status=200)
+
+@csrf_exempt
+def api_clear_logs(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = db_task.get_one_task(guid=guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+
+        db_task.clear_log(task_id=task_info[0]['id'])
+        return HttpResponse(status=200)

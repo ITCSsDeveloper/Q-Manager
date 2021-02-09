@@ -81,17 +81,17 @@
                   <td>{$ i.args $}</td>
                   <td>{$ i.status $}</td>
                   <td>
-                    <div ng-if="i.status == 'PENDING'">
+                    <div ng-if="true || i.status == 'PENDING'">
                       <button ng-click="func_start_task(i.guid)" 
                               class="btn btn-sm btn-success">START</button>
                     </div>
 
-                    <div ng-if="i.status != 'PENDING' && i.status != 'FINISH' && i.status != 'TERMINATE' && i.status != 'ERROR' ">
+                    <div ng-if="true || i.status != 'PENDING' && i.status != 'FINISH' && i.status != 'TERMINATE' && i.status != 'ERROR' ">
                       <button ng-click="func_stop_task(i.guid)" 
                               class="btn btn-sm btn-danger">STOP</button>
                     </div>
 
-                    <div ng-if="i.status != 'PENDING' && i.status != 'RUNNING'">
+                    <div ng-if="true || i.status != 'PENDING' && i.status != 'RUNNING'">
                       <button ng-click="func_reset_task(i.guid)" 
                               class="btn btn-sm btn-success">Reset</button>
                     </div>
@@ -130,9 +130,9 @@
 <script>
   app.controller("taskMonitorCtrl", function ($scope, $window) {
     $scope.url_api_show_all_task = "api/task1/show_all";
-    $scope.url_api_reset_task = "api/helper/reset";
-    $scope.url_api_stop_task = "api/helper/stop";
-    $scope.url_api_delete_task = "api/helper/delete";
+    $scope.url_api_reset_task = "api/reset";
+    $scope.url_api_stop_task = "api/stop";
+    $scope.url_api_delete_task = "api/delete";
 
     $scope.task_list = []
    
