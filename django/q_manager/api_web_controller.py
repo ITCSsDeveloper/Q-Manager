@@ -2,7 +2,6 @@
 import json
 import uuid 
 import sys
-import time
 import subprocess
 from bson import json_util
 from django.http import HttpResponse

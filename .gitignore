@@ -4,3 +4,5 @@ Disk0/__pycache__/*
 django/q_manager/__pycache__/*
 Disk0/logs/*
 django/q_manager/api/__pycache__/*
+django/q_manager/Repository/__pycache__/*
+__pycache__/*

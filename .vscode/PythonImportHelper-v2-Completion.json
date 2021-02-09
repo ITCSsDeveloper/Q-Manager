@@ -113,40 +113,6 @@
         "documentation": {}
     },
     {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "subprocess",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "json_util",
-        "importPath": "bson",
-        "description": "bson",
-        "isExtraImport": true,
-        "detail": "bson",
-        "documentation": {}
-    },
-    {
-        "label": "json_util",
-        "importPath": "bson",
-        "description": "bson",
-        "isExtraImport": true,
-        "detail": "bson",
-        "documentation": {}
-    },
-    {
         "label": "HttpResponse",
         "importPath": "django.http",
         "description": "django.http",
@@ -176,6 +142,22 @@
         "description": "django.views.decorators.csrf",
         "isExtraImport": true,
         "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "json_util",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
+        "label": "json_util",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
         "documentation": {}
     },
     {
@@ -193,6 +175,24 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -523,69 +523,6 @@
         "documentation": {}
     },
     {
-        "label": "db_task_repo",
-        "kind": 6,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "class db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)\n        return self.cursor.fetchall()\n    def check_duplicate_task_name(self, task_name):",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "api_show_all_task",
-        "kind": 2,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "def api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt\ndef api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : ",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "api_create_task",
-        "kind": 2,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "def api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : \n            return HttpResponse(status=409, content=\"Duplicate Task Name\")\n        db_task.create_task(task_name=task_name,\n                            pid='', status= \"PENDING\",guid=str(uuid.uuid4().hex),\n                            file_name=file_name, task_args=task_args)",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "api_delete_task",
-        "kind": 2,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "def api_delete_task(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        if db_task.get_one_task(guid=guid) == [] : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.delete_task(guid=guid)\n        return HttpResponse(status=200, content= F\"Delete Task {guid} Complete\")\n    else :\n        return HttpResponse(status=405, content=\"Method not allow\")\n@csrf_exempt",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "api_start",
-        "kind": 2,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "def api_start(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        # GET INFO TASK\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0 : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Validate Task Can Run ?\n        row = task_info[0]\n        if row['status'] == 'PENDING' :",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "DIR_TASK",
-        "kind": 5,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\n# Init DB Class\nclass db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
-        "label": "db_task",
-        "kind": 5,
-        "importPath": "django.q_manager.api",
-        "description": "django.q_manager.api",
-        "peekOfCode": "db_task = db_task_repo()\n# db_task.check_duplicate_task_name('Task1')\n# db_task.create_task('test1', '10001', 'PENDING', 'GUID', 'pyname.py', 'task_args')\n# xx = db_task.get_one_task('GUID')\n# Start API\n@csrf_exempt\ndef api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt",
-        "detail": "django.q_manager.api",
-        "documentation": {}
-    },
-    {
         "label": "get_task_info",
         "kind": 2,
         "importPath": "django.q_manager.api_log",
@@ -691,6 +628,69 @@
         "description": "django.q_manager.api_log",
         "peekOfCode": "cursor = connection.cursor(cursor_factory = RealDictCursor)\n@csrf_exempt\ndef get_task_info(guid) :\n    sql = F\"SELECT * FROM task_table T WHERE T.guid = '{guid}' LIMIT 1\"\n    cursor.execute(sql)\n    results = cursor.fetchall()\n    return results\n@csrf_exempt\ndef api_get_task(request):\n    if  request.method == \"POST\" :",
         "detail": "django.q_manager.api_log",
+        "documentation": {}
+    },
+    {
+        "label": "db_task_repo",
+        "kind": 6,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "class db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)\n        return self.cursor.fetchall()\n    def check_duplicate_task_name(self, task_name):",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_show_all_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt\ndef api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : ",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_create_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_create_task(request):\n    if request.method == 'POST':\n        task_name = request.POST['task_name']\n        file_name = request.POST['file_name']\n        task_args = request.POST['task_args']\n        if db_task.check_duplicate_task_name(task_name) : \n            return HttpResponse(status=409, content=\"Duplicate Task Name\")\n        db_task.create_task(task_name=task_name,\n                            pid='', status= \"PENDING\",guid=str(uuid.uuid4().hex),\n                            file_name=file_name, task_args=task_args)",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_delete_task",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_delete_task(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        if db_task.get_one_task(guid=guid) == [] : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.delete_task(guid=guid)\n        return HttpResponse(status=200, content= F\"Delete Task {guid} Complete\")\n    else :\n        return HttpResponse(status=405, content=\"Method not allow\")\n@csrf_exempt",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_start",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_start(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        # GET INFO TASK\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0 : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Validate Task Can Run ?\n        row = task_info[0]\n        if row['status'] == 'PENDING' :",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "DIR_TASK",
+        "kind": 5,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "DIR_TASK = '/Users/ratchanonc1/Documents/GitHub/Q-Manager/Disk0'\n# Init DB Class\nclass db_task_repo:\n    cursor : any\n    def __init__(self) -> None:\n        self.cursor = db_class().cursor\n        pass\n    def get_all_task(self):\n        sql = \"SELECT * FROM task_table ORDER BY id\"\n        self.cursor.execute(sql)",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "db_task",
+        "kind": 5,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "db_task = db_task_repo()\n# db_task.check_duplicate_task_name('Task1')\n# db_task.create_task('test1', '10001', 'PENDING', 'GUID', 'pyname.py', 'task_args')\n# xx = db_task.get_one_task('GUID')\n# Start API\n@csrf_exempt\ndef api_show_all_task(request):\n    result = json.dumps(db_task.get_all_task(), default=json_util.default)\n    return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n@csrf_exempt",
+        "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
     {
@@ -878,7 +878,7 @@
         "kind": 5,
         "importPath": "django.q_manager.urls",
         "description": "django.q_manager.urls",
-        "peekOfCode": "urlpatterns = [\n    path('',views.index),\n    path('create',views.create_view),\n    path('logs',views.log_view),\n    path('/update',views.update_view),\n    path('/delete',views.delete_view),\n    path('/monitor',views.monitor),\n    path('api/helper/insert_log', api_log.api_insert_log),\n    path('api/helper/get_task', api_log.api_get_task),\n    path('api/helper/update_status', api_log.api_update_status),",
+        "peekOfCode": "urlpatterns = [\n    # ROOT RENDER VIEWS\n    path('',views.index),\n    path('create',views.create_view),\n    path('logs',views.log_view),\n    path('/update',views.update_view),\n    path('/delete',views.delete_view),\n    path('/monitor',views.monitor),\n    # WEB API\n    path('api/start',  api_web.api_start),",
         "detail": "django.q_manager.urls",
         "documentation": {}
     },
