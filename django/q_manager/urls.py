@@ -14,7 +14,7 @@ urlpatterns = [
     path('task/logs',views.log_view),
     path('task/update',views.update_view),
     path('task/delete',views.delete_view),
-    path('task/monitor',views.monitor),
+    path('/task/monitor',views.monitor),
 
     # WEB API
     path('api/task/start',  api_web.api_start),

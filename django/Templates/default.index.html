@@ -65,7 +65,7 @@
             <table style="width: 100%" class="table table-hover"> 
               <thead>
                 <tr>
-                  <th>Id</th>
+                  <th></th>
                   <th>Name</th>
                   <th>File</th>
                   <th>Args</th>
@@ -75,10 +75,16 @@
               </thead>
               <tbody>
                 <tr ng-repeat="i in task_list">
-                  <td>{$ i.id $}</td>
+                  <td>
+                  <img 
+                    width="64px"
+                    src="https://www.flaticon.com/svg/vstatic/svg/2721/2721287.svg?token=exp=1612930192~hmac=a89affa656666a6c00875dfc42cac345"/>
+                  </td>
                   <td>{$ i.task_name $}</td>
                   <td>{$ i.file_name $}</td>
-                  <td>{$ i.args $}</td>
+                  <td>
+                    <textarea cols="40" rows="5" class="form-control" readonly>{$ i.args $}</textarea>
+                  </td>
                   <td>{$ i.status $}</td>
                   <td>
                     <div ng-if="true || i.status == 'PENDING'">
@@ -99,9 +105,13 @@
 
                     <button ng-click="func_log_task(i.guid)" 
                             class="btn btn-sm btn-default">LOG</button>
-{% comment %} 
+
                     <button ng-click="func_edit_task(i.guid)" 
-                            class="btn btn-warning">EDIT</button> {% endcomment %}
+                            class="btn btn-warning">EDIT</button> 
+
+                    <button ng-click="func_delete_task(i.guid)" 
+                            class="btn btn-warning">DELETE</button> 
+
                   </td>
                 </tr>
               </tbody>
@@ -129,32 +139,31 @@
 {% block script %}
 <script>
   app.controller("taskMonitorCtrl", function ($scope, $window) {
+    $scope.task_list = []
+
     $scope.url_api_show_all_task = "api/task/show";
     $scope.url_api_start_task = "api/task/start";
     $scope.url_api_reset_task = "api/task/reset";
     $scope.url_api_stop_task = "api/task/stop";
     $scope.url_api_delete_task = "api/task/delete";
-
-    $scope.task_list = []
+    $scope.url_task_create = '/task/create';
+    $scope.url_task_logs = '/task/logs';
    
     $scope.init = function () {
-
       $scope.func_show_all_task();
-      setInterval(function(){ 
-       $scope.func_show_all_task();
-      }, 1000);
     };
     $scope.func_goto_create= function() {
-       $window.location.href = '/task/create';
+       $window.location.href = $scope.url_task_create;
     }
     $scope.func_show_all_task = function () {
       $.ajax({
         type: "POST",
-        url: "./api/task/show",
+        url: $scope.url_api_show_all_task,
         success: function (res) {
           $scope.$apply(function() {
             $scope.task_list = res;
           }); 
+          ShowLoading(false);
         },
         error: function (jqXHR) {
         },
@@ -204,11 +213,7 @@
     }
     $scope.func_log_task = function(guid) {
       ShowLoading(true);
-      $window.location.href = '/task/logs?guid=' + guid;
-    }
-    $scope.func_edit_task = function(guid) {
-      console.log(guid)
-      //redirect to edit
+      $window.location.href = $scope.url_task_logs + '?guid=' + guid;
     }
     $scope.func_reset_task = function(guid) {
       ShowLoading(true);
@@ -232,10 +237,50 @@
           },
         });
     }
-    $scope.func_delete_tasl = function(guid) {
-
+    $scope.func_delete_task = function(guid) {
+      var _data = {
+        'guid' : guid,
+      }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Would you like to delete this ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function(result){
+        if (result.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: $scope.url_api_delete_task,
+            data: _data,
+            success: function (res) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              ).then(function() {
+                $scope.func_show_all_task()
+              });
+            },
+            error: function (jqXHR, exception) {
+              Swal.fire({
+                icon: "error",
+                title: jqXHR.status + ' ' + jqXHR.statusText  ,
+                text: jqXHR.responseText,
+              });
+            }
+          });
+        }
+      });
+    }
+    $scope.func_edit_task = function(guid) {
+      ShowLoading(true);
+      $window.location.href = '/task/edit?guid='+ guid;
     }
     $scope.init();
   });
 </script>
+
 {% endblock %}

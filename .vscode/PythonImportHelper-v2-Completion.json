@@ -62,6 +62,14 @@
         "documentation": {}
     },
     {
+        "label": "clien_api_class",
+        "importPath": "client_api",
+        "description": "client_api",
+        "isExtraImport": true,
+        "detail": "client_api",
+        "documentation": {}
+    },
+    {
         "label": "psycopg2",
         "kind": 6,
         "isExtraImport": true,
@@ -256,7 +264,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )",
+        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -265,7 +273,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน",
+        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -274,7 +282,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP",
+        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -283,7 +291,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER",
+        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -292,7 +300,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :",
+        "peekOfCode": "mo_database = 'gcc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -301,7 +309,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "mo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )",
+        "peekOfCode": "mo_collection = 'gcc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -310,7 +318,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "log_name = 'log_gcc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )\n    #ENDHEADER  ( คือ ระบุว่าให้หยุดอ่านข้อมูลของ  Header )",
+        "peekOfCode": "log_name = 'log_gcc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -360,15 +368,6 @@
         "documentation": {}
     },
     {
-        "label": "MyHelper",
-        "kind": 6,
-        "importPath": "Disk0.task2",
-        "description": "Disk0.task2",
-        "peekOfCode": "class MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid\n        pass\n    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม\n    def api_get_task(self) :",
-        "detail": "Disk0.task2",
-        "documentation": {}
-    },
-    {
         "label": "ImportToMong",
         "kind": 6,
         "importPath": "Disk0.task2",
@@ -382,7 +381,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )",
+        "peekOfCode": "mo_host = 'localhost'      # Host \nmo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -391,7 +390,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน",
+        "peekOfCode": "mo_user = 'mongodb'        # Password\nmo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -400,7 +399,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP",
+        "peekOfCode": "mo_pass = 'Password12345'  # Password\nmo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -409,7 +408,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER",
+        "peekOfCode": "mo_port = '27017'          # Port\nmo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -418,7 +417,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :",
+        "peekOfCode": "mo_database = 'acc'      # Database Name   ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nmo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -427,7 +426,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "mo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )",
+        "peekOfCode": "mo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให้อัตโนมัติถ้ายังไม่ถูกสร้าง )\nlog_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -436,7 +435,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "log_name = 'log_acc.log' # Log file name\n#############################################################\n\"\"\"\n    อธิบาย Mapfile  ( ./data/LA00000.MAP )\n    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน\n    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP\n    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER\n    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :\n    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )\n    #ENDHEADER  ( คือ ระบุว่าให้หยุดอ่านข้อมูลของ  Header )",
+        "peekOfCode": "log_name = 'log_acc.log' # Log file name\n#############################################################\n# Get Script path runing\nscript_path = os.path.dirname(os.path.abspath(__file__))\nprint('__name__', __name__)\nprint('script_path', script_path)\n# Setup Logging\nlogFormatter = \"%(asctime)s %(levelname)s: %(message)s\"\nlogging.basicConfig( filename=F'{script_path}/logs/{log_name}',\n                    encoding='utf-8',",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -472,7 +471,7 @@
         "kind": 5,
         "importPath": "Disk0.task2",
         "description": "Disk0.task2",
-        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\n# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)\nclass MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid",
+        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\nclass ImportToMongo :\n    __guid = \"\"\n    __pid = \"\"\n    __myclient = None\n    __mydb = None\n    __mycol = None\n    __start_time = None\n    __stop_time = None",
         "detail": "Disk0.task2",
         "documentation": {}
     },
@@ -616,7 +615,7 @@
         "kind": 2,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info['pid'])\n        os.kill(pid, signal.SIGTERM)\n        db_task.task_update_status(guid=guid, status=\"TERMINATE\")",
+        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        try:\n            pid = int(task_info['pid'])\n            os.kill(pid, signal.SIGTERM)",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
@@ -850,7 +849,7 @@
         "kind": 5,
         "importPath": "django.q_manager.urls",
         "description": "django.q_manager.urls",
-        "peekOfCode": "urlpatterns = [\n    # ROOT RENDER VIEWS\n    path('',views.index),\n    path('task/create',views.create_view),\n    path('task/logs',views.log_view),\n    path('task/update',views.update_view),\n    path('task/delete',views.delete_view),\n    path('task/monitor',views.monitor),\n    # WEB API\n    path('api/task/start',  api_web.api_start),",
+        "peekOfCode": "urlpatterns = [\n    # ROOT RENDER VIEWS\n    path('',views.index),\n    path('task/create',views.create_view),\n    path('task/logs',views.log_view),\n    path('task/update',views.update_view),\n    path('task/delete',views.delete_view),\n    path('/task/monitor',views.monitor),\n    # WEB API\n    path('api/task/start',  api_web.api_start),",
         "detail": "django.q_manager.urls",
         "documentation": {}
     },

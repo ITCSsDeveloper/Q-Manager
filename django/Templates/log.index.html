@@ -62,9 +62,9 @@
     $scope.init = function () {
       $scope.funcGetLogs();
       
-      setInterval(function(){
-        $scope.funcGetLogs();
-       }, 2000);
+     // setInterval(function(){
+     //   $scope.funcGetLogs();
+     //  }, 2000);
     };
 
     $scope.funcBtnBack = function(){
@@ -96,6 +96,7 @@
                 'Your file has been deleted.',
                 'success'
               );
+              $scope.funcGetLogs();
             },
             error: function (jqXHR, exception) {
               Swal.fire({

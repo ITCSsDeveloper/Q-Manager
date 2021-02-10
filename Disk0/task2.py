@@ -3,7 +3,8 @@ import logging
 import os
 import time
 import sys
-import requests
+from client_api import clien_api_class
+
 
 # Note 
 # สิ่งแรกที่ task ควรจะได้มาพร้อม args คือ guid
@@ -24,42 +25,6 @@ mo_collection = 'acc'    # Collection Name ( Mongo จะสร้างให�
 
 log_name = 'log_acc.log' # Log file name
 #############################################################
-
-"""
-    
-    อธิบาย Mapfile  ( ./data/LA00000.MAP )
-
-    ทุกครั้งที่จะเอาข้อมูลเข้า Database เราต้องทำการระบุชื่อฟิลด์ให้กับข้อมูลก่อน
-    โดย ให้เข้าไประบุไว้ในไฟล์ .MAP
-
-    ใน mapfile จะมีส่วนที่กำหนดค่าอยู่ 3 ส่วน คือ HEADER, BODY, FOOTER
-    
-    ยกตัวอย่าง (HEADER, BODY, FOOTER ใช้หลักการกำหนดแบบเดียวกัน) :
-    #HEADER     ( คือ ระบุว่าข้อมูลต่อจากนี้จะเป็นส่วนของ Column Header )
-    #ENDHEADER  ( คือ ระบุว่าให้หยุดอ่านข้อมูลของ  Header )
-
-"""
-
-""" 
-
-* วิธีเรียกใช้งาน
- - python3 main.py -file_name=./data/LA00000.GCC -map_file_name=./data/LA00000.MAP -limit=100 -header=HT -body=DT -footer=FT
- 
-* อธิบาย Parameter :
- -file_name={value}        ( ให้ใส่ Part ไฟล์ Source )
- -map_file_name={value}    ( ให้ใส่ Part ไฟล์ Mapping  )
- -limit={value}            ( จำนวนข้อมูลต่อรอบการ Insert เช่น ใส่ 100 จะหมายถึง ให้อ่านข้อมูลครบ 100 rows ก่อนถึงค่อยทำการ Insert ลง Database  )
- -header={value}           ( ระบุชุดข้อมูลแบบ Header เช่น ใส่ HT เมื่อโปรแกรมอ่านเจอขึ้นต้นว่า HT โปรแกรมจะเข้าใจว่าบรรทัดนั้นคือข้อมูล Header  )
- -body={value}             ( ระบุชุดข้อมูลแบบ Body   เช่น ใส่ DT เมื่อโปรแกรมอ่านเจอขึ้นต้นว่า DT โปรแกรมจะเข้าใจว่าบรรทัดนั้นคือข้อมูล Body  )
- -footer={value}           ( ระบุชุดข้อมูลแบบ Footer เช่น ใส่ FT เมื่อโปรแกรมอ่านเจอขึ้นต้นว่า FT โปรแกรมจะเข้าใจว่าบรรทัดนั้นคือข้อมูล Footer  )
-
-* หมายเหตุ -header, -body, -footer ไม่ใส่ก็ได้ โปรแกรมจะ Default ค่าไว้ให้ HT, DT, FT ตามลำดับ
-
-"""
-
-"""
- ไฟล์ Log จะเก็บอยู่ที่ Folder logs
-"""
 
 # Get Script path runing
 script_path = os.path.dirname(os.path.abspath(__file__))
@@ -86,65 +51,6 @@ conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'
 
 #----------------------------------------------------------------------------#
 
-# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)
-class MyHelper:
-    __api_url = 'http://localhost:8000'
-    __guid = ""
-    __pid = ""
-
-    def __init__(self, guid, pid):
-        self.__guid = guid
-        self.__pid = pid
-        pass
-
-    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม
-    def api_get_task(self) :
-        url = F"{self.__api_url}/api/helper/get_task"
-        payload={'guid': self.__guid}
-        response = requests.request("POST", url, headers={}, data=payload, files=[])
-        if response.status_code == 200:
-            return 1
-        elif response.status_code == 404:
-            return None
-        pass
-
-    # Insert log ลง db
-    def api_log_insert(self, message): 
-        try :
-            url = F"{self.__api_url}/api/helper/insert_log"
-            payload={'guid': self.__guid,'pid': self.__pid, 'message': message}
-            requests.request("POST", url, headers={}, data=payload, files=[])
-        except:
-            print("Unexpected error:", sys.exc_info()[0])
-            pass
-        pass
-
-    def api_update_status(self, status):
-        try :
-            url = F"{self.__api_url}/api/helper/update_status"
-            payload={   
-                'guid': self.__guid,
-                'status': status
-            }
-            requests.request("POST", url, headers={}, data=payload, files=[])
-        except:
-            print("Unexpected error:", sys.exc_info()[0])
-            pass
-        pass
-
-    def api_update_pid(self):
-       try :
-           url = F"{self.__api_url}/api/helper/update_pid"
-           payload={   
-               'guid': self.__guid,
-               'pid': self.__pid
-           }
-           requests.request("POST", url, headers={}, data=payload, files=[])
-       except:
-           print("Unexpected error:", sys.exc_info()[0])
-           pass
-       pass
-#END OF HELPER CLASS
 
 class ImportToMongo :
     __guid = ""
@@ -164,7 +70,6 @@ class ImportToMongo :
     __file_name = ""
     __map_file_name = ""
 
-    # __api_helpter = None
     __task_info = None
 
     #TODO Move Constatn to New Class
@@ -197,12 +102,12 @@ class ImportToMongo :
         self.__pid = os.getpid()
 
          # Init MyHelper สำหรับ Insert Logs
-        self.__api_helpter = MyHelper(self.__guid, self.__pid)
+        self.__api_helpter = clien_api_class(self.__guid, self.__pid)
         self.change_status(self.RUNNING)  # UPDATE STATUS TO RUNNING
         self.update_pid()
         self.log(F'PID = {self.__pid}')
 
-        time.sleep(15)
+        time.sleep(5)
         
         # Check args
         if self.__guid == '':

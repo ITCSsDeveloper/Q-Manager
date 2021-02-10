@@ -155,11 +155,11 @@ def api_start(request):
             try:
                 p = subprocess.Popen(comm, shell=True)
             except subprocess.CalledProcessError as e:
-                print("Oops... returncode: " + e.returncode + ", output:\n" + e.output)
+                err = "Oops... returncode: " + e.returncode + ", output:\n" + e.output
+                return HttpResponse(status=500, content=err)
             except:
-                print("Unexpected error:", sys.exc_info()[0])
-
-
+                return HttpResponse(status=500, content="Unexpected error:"+sys.exc_info()[0])
+            
             return HttpResponse(status=200)
         else :
             return HttpResponse(status=403, content=F"Task Unavailable")
@@ -174,13 +174,17 @@ def api_stop(request):
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
         # Kill Process
-        pid = int(task_info['pid'])
-        os.kill(pid, signal.SIGTERM)
+        try:
+            pid = int(task_info['pid'])
+            os.kill(pid, signal.SIGTERM)
 
-        db_task.task_update_status(guid=guid, status="TERMINATE")
-        db_task.task_log(pid=pid, task_id=task_info['id'], message='TERMINATE by User')
-
-        return HttpResponse(status=200)
+            db_task.task_update_status(guid=guid, status="TERMINATE")
+            db_task.task_log(pid=pid, task_id=task_info['id'], message='TERMINATE by User')
+            
+            return HttpResponse(status=200)
+        except :
+            print("Unexpected error:", sys.exc_info()[0])
+            return HttpResponse(status=500, content="Task Unavailable")
 
 @csrf_exempt
 def api_reset(request):
@@ -207,7 +211,6 @@ def api_clear_logs(request):
 
         db_task.clear_log(task_id=task_info['id'])
         return HttpResponse(status=200)
-
 
 @csrf_exempt
 def api_get_logs(request):
