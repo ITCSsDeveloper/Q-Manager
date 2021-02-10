@@ -3,7 +3,8 @@ import logging
 import os
 import time
 import sys
-import requests
+from client_api import clien_api_class
+
 
 # Note 
 # สิ่งแรกที่ task ควรจะได้มาพร้อม args คือ guid
@@ -86,65 +87,6 @@ conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'
 
 #----------------------------------------------------------------------------#
 
-# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)
-class MyHelper:
-    __api_url = 'http://localhost:8000'
-    __guid = ""
-    __pid = ""
-
-    def __init__(self, guid, pid):
-        self.__guid = guid
-        self.__pid = pid
-        pass
-
-    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม
-    def api_get_task(self) :
-        url = F"{self.__api_url}/api/helper/get_task"
-        payload={'guid': self.__guid}
-        response = requests.request("POST", url, headers={}, data=payload, files=[])
-        if response.status_code == 200:
-            return 1
-        elif response.status_code == 404:
-            return None
-        pass
-
-    # Insert log ลง db
-    def api_log_insert(self, message): 
-        try :
-            url = F"{self.__api_url}/api/helper/insert_log"
-            payload={'guid': self.__guid,'pid': self.__pid, 'message': message}
-            requests.request("POST", url, headers={}, data=payload, files=[])
-        except:
-            print("Unexpected error:", sys.exc_info()[0])
-            pass
-        pass
-
-    def api_update_status(self, status):
-        try :
-            url = F"{self.__api_url}/api/helper/update_status"
-            payload={   
-                'guid': self.__guid,
-                'status': status
-            }
-            requests.request("POST", url, headers={}, data=payload, files=[])
-        except:
-            print("Unexpected error:", sys.exc_info()[0])
-            pass
-        pass
-
-    def api_update_pid(self):
-       try :
-           url = F"{self.__api_url}/api/helper/update_pid"
-           payload={   
-               'guid': self.__guid,
-               'pid': self.__pid
-           }
-           requests.request("POST", url, headers={}, data=payload, files=[])
-       except:
-           print("Unexpected error:", sys.exc_info()[0])
-           pass
-       pass
-#END OF HELPER CLASS
 
 class ImportToMongo :
     __guid = ""
@@ -164,7 +106,6 @@ class ImportToMongo :
     __file_name = ""
     __map_file_name = ""
 
-    # __api_helpter = None
     __task_info = None
 
     #TODO Move Constatn to New Class
@@ -197,12 +138,12 @@ class ImportToMongo :
         self.__pid = os.getpid()
 
          # Init MyHelper สำหรับ Insert Logs
-        self.__api_helpter = MyHelper(self.__guid, self.__pid)
+        self.__api_helpter = clien_api_class(self.__guid, self.__pid)
         self.change_status(self.RUNNING)  # UPDATE STATUS TO RUNNING
         self.update_pid()
         self.log(F'PID = {self.__pid}')
 
-        time.sleep(15)
+        time.sleep(5)
         
         # Check args
         if self.__guid == '':

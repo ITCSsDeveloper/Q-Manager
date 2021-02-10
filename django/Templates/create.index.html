@@ -6,7 +6,7 @@
 
 
 <div ng-controller="createTaskCtrl"  class="container" style="margin-top: 50px;">
-  <h3>New Task</h3>
+  <h3>New Task </h3>
   <hr>
 
   <form class="form-horizontal" action="/action_page.php">
@@ -44,21 +44,47 @@
 
 <script>
   app.controller("createTaskCtrl", function ($scope, $window) { 
-    $scope.url_post_create = '';
+    $scope.url_api_task_create = "../api/task/create";
+
     $scope.task_name = '';
     $scope.task_args = '';
     $scope.file_name = '';
 
     $scope.funcCreateTask = function() {
       ShowLoading(true);
+
+      // Basic Validate 
+      if($scope.task_name.length <= 0){
+        Swal.fire({
+          icon: 'error',
+          title: 'Task Name is required',
+        });
+        return;
+      }
+      else if($scope.file_name.length <= 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'File Name is required',
+        });
+        return;
+      }
+      else if($scope.task_args.length <= 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Args is required',
+        });
+        return;
+      }
+      
       var _data = {
         'task_name' : $scope.task_name,
         'task_args' : $scope.task_args,
         'file_name' : $scope.file_name
       }
+
       $.ajax({
         type: "POST",
-        url: "api/create",
+        url: $scope.url_api_task_create,
         data: _data,
         success: function (res) {
           Swal.fire({
@@ -66,7 +92,7 @@
             title: "สำเร็จ" ,
             text: "สร้าง task สำเร็จ",
           }).then(function() {
-            $window.location.href = '/';
+             $window.location.replace('/');
           });
         },
         error: function (jqXHR, exception) {
@@ -79,7 +105,7 @@
       });
     }
     $scope.funcBtnBack = function(){
-      $window.location.href = '/';
+      $window.location.replace('/');
     }
   });
 </script>

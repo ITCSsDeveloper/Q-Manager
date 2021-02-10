@@ -78,31 +78,6 @@ def api_update_status(request):
         return HttpResponse(status=200)
     pass
 
-@csrf_exempt
-def api_get_logs(request):
-    if  request.method == "POST" :
-        guid = request.POST['guid']
-
-        task_info = get_task_info(guid)
-        if len(task_info) == 0:
-            return HttpResponse(status=404, content= F"Task {guid} Not Found")
-
-        sql = F"""
-                select * 
-                from (
-                    select 
-                        id, pid, task_id , message , to_char(time,'DD-MM-YYYY') as date , to_char(time,'HH:mm:ss') as time
-                    from logs_table 
-                    where task_id =  {task_info[0]['id']}
-                    order by id 
-                    limit 1000
-                ) as A
-                order by A.id DESC 
-              """
-        cursor.execute(sql)
-        result = json.dumps(cursor.fetchall(), default=json_util.default)
-        return HttpResponse(status=200, content=result, content_type="application/json" )
-    pass
 
 @csrf_exempt
 def api_update_pid(request):

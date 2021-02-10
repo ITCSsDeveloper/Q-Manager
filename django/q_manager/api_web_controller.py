@@ -71,6 +71,22 @@ class db_task_repo:
         self.cursor.execute(sql)
         return True
 
+    def api_get_logs(self, task_id) : 
+        sql = F"""
+                select * 
+                from (
+                    select 
+                        id, pid, task_id , message , to_char(time,'DD-MM-YYYY') as date , to_char(time,'HH:mm:ss') as time
+                    from logs_table 
+                    where task_id =  {task_id}
+                    order by id 
+                    limit 1000
+                ) as A
+                order by A.id DESC 
+              """
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+
 
 db_task = db_task_repo()
 # db_task.check_duplicate_task_name('Task1')
@@ -129,17 +145,20 @@ def api_start(request):
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
         # Validate Task Can Run ?
-        row = task_info[0]
-        if row['status'] == 'PENDING' :
+        if task_info['status'] == 'PENDING' :
 
-            comm = F"python3 {DIR_TASK}/{row['file_name']} {row['args']}"
+            comm = F"python3 {DIR_TASK}/{task_info['file_name']} {task_info['args']}"
             comm = comm.replace("{DIR_TASK}", DIR_TASK)
             comm = comm.replace("{GUID}", guid)
         
+            #TODO Make Catch Error From Subsyetem
             try:
-                po = subprocess.Popen(comm, shell=True)
+                p = subprocess.Popen(comm, shell=True)
+            except subprocess.CalledProcessError as e:
+                print("Oops... returncode: " + e.returncode + ", output:\n" + e.output)
             except:
                 print("Unexpected error:", sys.exc_info()[0])
+
 
             return HttpResponse(status=200)
         else :
@@ -155,11 +174,11 @@ def api_stop(request):
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
         # Kill Process
-        pid = int(task_info[0]['pid'])
+        pid = int(task_info['pid'])
         os.kill(pid, signal.SIGTERM)
 
         db_task.task_update_status(guid=guid, status="TERMINATE")
-        db_task.task_log(pid=pid, task_id=task_info[0]['id'], message='TERMINATE by User')
+        db_task.task_log(pid=pid, task_id=task_info['id'], message='TERMINATE by User')
 
         return HttpResponse(status=200)
 
@@ -173,7 +192,7 @@ def api_reset(request):
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
         db_task.task_update_status(guid=guid, status="PENDING")
-        db_task.task_log(pid='', task_id=task_info[0]['id'], message='Reset to PENDING by User')
+        db_task.task_log(pid='', task_id=task_info['id'], message='Reset to PENDING by User')
 
         return HttpResponse(status=200)
 
@@ -186,5 +205,19 @@ def api_clear_logs(request):
         if len(task_info) == 0:
             return HttpResponse(status=404, content= F"Task {guid} Not Found")
 
-        db_task.clear_log(task_id=task_info[0]['id'])
+        db_task.clear_log(task_id=task_info['id'])
         return HttpResponse(status=200)
+
+
+@csrf_exempt
+def api_get_logs(request):
+    if  request.method == "POST" :
+        guid = request.POST['guid']
+
+        task_info = db_task.get_one_task(guid=guid)
+        if len(task_info) == 0:
+            return HttpResponse(status=404, content= F"Task {guid} Not Found")
+       
+        result = json.dumps(db_task.api_get_logs(task_info['id']), default=json_util.default)
+        return HttpResponse(status=200, content=result, content_type="application/json" )
+    pass

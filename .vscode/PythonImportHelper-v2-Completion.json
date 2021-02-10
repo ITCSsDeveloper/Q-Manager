@@ -54,6 +54,14 @@
         "documentation": {}
     },
     {
+        "label": "clien_api_class",
+        "importPath": "client_api",
+        "description": "client_api",
+        "isExtraImport": true,
+        "detail": "client_api",
+        "documentation": {}
+    },
+    {
         "label": "psycopg2",
         "kind": 6,
         "isExtraImport": true,
@@ -226,30 +234,12 @@
         "documentation": {}
     },
     {
-        "label": "api_get_task",
-        "kind": 2,
-        "importPath": "Disk0.MyHelper",
-        "description": "Disk0.MyHelper",
-        "peekOfCode": "def api_get_task(self, guid) :\n    url = F\"{self.__api_url}/api/helper/get_task\"\n    payload={'guid': guid}\n    files=[]\n    headers = {}\n    response = requests.request(\"POST\", url, headers=headers, data=payload, files=files)\n    if response.status_code == 200:\n        return response.json()\n    elif response.status_code == 404:\n        return None",
-        "detail": "Disk0.MyHelper",
-        "documentation": {}
-    },
-    {
-        "label": "__api_url",
-        "kind": 5,
-        "importPath": "Disk0.MyHelper",
-        "description": "Disk0.MyHelper",
-        "peekOfCode": "__api_url = 'http://localhost:8000'\ndef api_get_task(self, guid) :\n    url = F\"{self.__api_url}/api/helper/get_task\"\n    payload={'guid': guid}\n    files=[]\n    headers = {}\n    response = requests.request(\"POST\", url, headers=headers, data=payload, files=files)\n    if response.status_code == 200:\n        return response.json()\n    elif response.status_code == 404:",
-        "detail": "Disk0.MyHelper",
-        "documentation": {}
-    },
-    {
-        "label": "MyHelper",
+        "label": "clien_api_class",
         "kind": 6,
-        "importPath": "Disk0.task1",
-        "description": "Disk0.task1",
-        "peekOfCode": "class MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid\n        pass\n    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม\n    def api_get_task(self) :",
-        "detail": "Disk0.task1",
+        "importPath": "Disk0.client_api",
+        "description": "Disk0.client_api",
+        "peekOfCode": "class clien_api_class:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid\n        pass\n    # ตรวจสอบว่ามี guid นี้อยู่ใน database ไหม\n    def api_get_task(self) :",
+        "detail": "Disk0.client_api",
         "documentation": {}
     },
     {
@@ -356,7 +346,7 @@
         "kind": 5,
         "importPath": "Disk0.task1",
         "description": "Disk0.task1",
-        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\n# HELPER CLASS  (ค่อยย้ายออกไปข้างนอก ตอนนี้ติดบัคอยู่ไม่รู้ว่าทำไม)\nclass MyHelper:\n    __api_url = 'http://localhost:8000'\n    __guid = \"\"\n    __pid = \"\"\n    def __init__(self, guid, pid):\n        self.__guid = guid\n        self.__pid = pid",
+        "peekOfCode": "conn_str = F'mongodb://{mo_user}:{mo_pass}@{mo_host}:{mo_port}'\n#----------------------------------------------------------------------------#\nclass ImportToMongo :\n    __guid = \"\"\n    __pid = \"\"\n    __myclient = None\n    __mydb = None\n    __mycol = None\n    __start_time = None\n    __stop_time = None",
         "detail": "Disk0.task1",
         "documentation": {}
     },
@@ -541,15 +531,6 @@
         "documentation": {}
     },
     {
-        "label": "api_get_logs",
-        "kind": 2,
-        "importPath": "django.q_manager.api_log",
-        "description": "django.q_manager.api_log",
-        "peekOfCode": "def api_get_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = get_task_info(guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        sql = F\"\"\"\n                select * \n                from (\n                    select ",
-        "detail": "django.q_manager.api_log",
-        "documentation": {}
-    },
-    {
         "label": "api_update_pid",
         "kind": 2,
         "importPath": "django.q_manager.api_log",
@@ -626,7 +607,7 @@
         "kind": 2,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "def api_start(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        # GET INFO TASK\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0 : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Validate Task Can Run ?\n        row = task_info[0]\n        if row['status'] == 'PENDING' :",
+        "peekOfCode": "def api_start(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        # GET INFO TASK\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0 : \n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Validate Task Can Run ?\n        if task_info['status'] == 'PENDING' :\n            comm = F\"python3 {DIR_TASK}/{task_info['file_name']} {task_info['args']}\"",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
@@ -635,7 +616,7 @@
         "kind": 2,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info[0]['pid'])\n        os.kill(pid, signal.SIGTERM)\n        db_task.task_update_status(guid=guid, status=\"TERMINATE\")",
+        "peekOfCode": "def api_stop(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        # Kill Process\n        pid = int(task_info['pid'])\n        os.kill(pid, signal.SIGTERM)\n        db_task.task_update_status(guid=guid, status=\"TERMINATE\")",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
@@ -644,7 +625,7 @@
         "kind": 2,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "def api_reset(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.task_update_status(guid=guid, status=\"PENDING\")\n        db_task.task_log(pid='', task_id=task_info[0]['id'], message='Reset to PENDING by User')\n        return HttpResponse(status=200)\n@csrf_exempt",
+        "peekOfCode": "def api_reset(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.task_update_status(guid=guid, status=\"PENDING\")\n        db_task.task_log(pid='', task_id=task_info['id'], message='Reset to PENDING by User')\n        return HttpResponse(status=200)\n@csrf_exempt",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
@@ -653,7 +634,16 @@
         "kind": 2,
         "importPath": "django.q_manager.api_web_controller",
         "description": "django.q_manager.api_web_controller",
-        "peekOfCode": "def api_clear_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.clear_log(task_id=task_info[0]['id'])\n        return HttpResponse(status=200)",
+        "peekOfCode": "def api_clear_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        db_task.clear_log(task_id=task_info['id'])\n        return HttpResponse(status=200)\n@csrf_exempt\ndef api_get_logs(request):",
+        "detail": "django.q_manager.api_web_controller",
+        "documentation": {}
+    },
+    {
+        "label": "api_get_logs",
+        "kind": 2,
+        "importPath": "django.q_manager.api_web_controller",
+        "description": "django.q_manager.api_web_controller",
+        "peekOfCode": "def api_get_logs(request):\n    if  request.method == \"POST\" :\n        guid = request.POST['guid']\n        task_info = db_task.get_one_task(guid=guid)\n        if len(task_info) == 0:\n            return HttpResponse(status=404, content= F\"Task {guid} Not Found\")\n        result = json.dumps(db_task.api_get_logs(task_info['id']), default=json_util.default)\n        return HttpResponse(status=200, content=result, content_type=\"application/json\" )\n    pass",
         "detail": "django.q_manager.api_web_controller",
         "documentation": {}
     },
@@ -860,7 +850,7 @@
         "kind": 5,
         "importPath": "django.q_manager.urls",
         "description": "django.q_manager.urls",
-        "peekOfCode": "urlpatterns = [\n    # ROOT RENDER VIEWS\n    path('',views.index),\n    path('create',views.create_view),\n    path('logs',views.log_view),\n    path('/update',views.update_view),\n    path('/delete',views.delete_view),\n    path('/monitor',views.monitor),\n    # WEB API\n    path('api/start',  api_web.api_start),",
+        "peekOfCode": "urlpatterns = [\n    # ROOT RENDER VIEWS\n    path('',views.index),\n    path('task/create',views.create_view),\n    path('task/logs',views.log_view),\n    path('task/update',views.update_view),\n    path('task/delete',views.delete_view),\n    path('task/monitor',views.monitor),\n    # WEB API\n    path('api/task/start',  api_web.api_start),",
         "detail": "django.q_manager.urls",
         "documentation": {}
     },

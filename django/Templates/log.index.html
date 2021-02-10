@@ -54,8 +54,8 @@
 <script>
   app.controller("logTaskCtrl", function ($scope, $window) {
     $scope.guid = '{{ guid }}';
-    $scope.url_api_get_logs = "api/helper/get_logs";
-    $scope.url_api_clear_logs = "api/helper/clear_logs";
+    $scope.url_api_get_logs = "../api/task/log/show";
+    $scope.url_api_clear_logs = "../api/task/log/clear";
 
     $scope.task_logs = []
 
@@ -64,7 +64,7 @@
       
       setInterval(function(){
         $scope.funcGetLogs();
-       }, 1000);
+       }, 2000);
     };
 
     $scope.funcBtnBack = function(){

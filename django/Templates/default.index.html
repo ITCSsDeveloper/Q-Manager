@@ -129,23 +129,28 @@
 {% block script %}
 <script>
   app.controller("taskMonitorCtrl", function ($scope, $window) {
-    $scope.url_api_show_all_task = "api/task1/show_all";
-    $scope.url_api_reset_task = "api/reset";
-    $scope.url_api_stop_task = "api/stop";
-    $scope.url_api_delete_task = "api/delete";
+    $scope.url_api_show_all_task = "api/task/show";
+    $scope.url_api_start_task = "api/task/start";
+    $scope.url_api_reset_task = "api/task/reset";
+    $scope.url_api_stop_task = "api/task/stop";
+    $scope.url_api_delete_task = "api/task/delete";
 
     $scope.task_list = []
    
     $scope.init = function () {
+
       $scope.func_show_all_task();
+      setInterval(function(){ 
+       $scope.func_show_all_task();
+      }, 1000);
     };
     $scope.func_goto_create= function() {
-       $window.location.href = '/create';
+       $window.location.href = '/task/create';
     }
     $scope.func_show_all_task = function () {
       $.ajax({
         type: "POST",
-        url: "./api/show",
+        url: "./api/task/show",
         success: function (res) {
           $scope.$apply(function() {
             $scope.task_list = res;
@@ -162,11 +167,10 @@
       }
       $.ajax({
           type: "POST",
-          url: "./api/start",
+          url: $scope.url_api_start_task,
           data: _data,
           success: function (res) {
-              console.log(res)
-              ShowLoading(false);
+            $scope.func_show_all_task()
           },
           error: function (jqXHR) {
             Swal.fire({
@@ -187,7 +191,7 @@
           url: $scope.url_api_stop_task,
           data: _data,
           success: function (res) {
-              ShowLoading(false);
+            $scope.func_show_all_task()
           },
           error: function (jqXHR) {
             Swal.fire({
@@ -200,7 +204,7 @@
     }
     $scope.func_log_task = function(guid) {
       ShowLoading(true);
-      $window.location.href = '/logs?guid=' + guid;
+      $window.location.href = '/task/logs?guid=' + guid;
     }
     $scope.func_edit_task = function(guid) {
       console.log(guid)
@@ -217,6 +221,7 @@
           data: _data,
           success: function (res) {
               ShowLoading(false);
+               $scope.func_show_all_task()
           },
           error: function (jqXHR) {
             Swal.fire({
